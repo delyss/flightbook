@@ -2,6 +2,7 @@ package com.example.murat.akuhavkflightbook;
 
 
 import com.example.murat.akuhavkflightbook.common.view.SlidingTabLayout;
+import com.example.murat.akuhavkflightbook.tabs.Pilot;
 //import com.example.murat.akuhavkflightbook.tabs.Pilot;
 
 import android.os.Bundle;
@@ -154,7 +155,7 @@ public class SlidingTabsBasicFragment extends Fragment {
                     container, false);
 
             container.addView(view);
-           // new Pilot(view);
+            //new Pilot();
             return view;
         }
 

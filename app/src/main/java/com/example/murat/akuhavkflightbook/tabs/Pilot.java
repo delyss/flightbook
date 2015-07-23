@@ -1,5 +1,3 @@
-
-
 package com.example.murat.akuhavkflightbook.tabs;
 
 import android.os.Bundle;
@@ -14,52 +12,40 @@ import android.widget.TextView;
 import com.example.murat.akuhavkflightbook.R;
 
 import roboguice.RoboGuice;
+import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
 
 
 @ContentView(R.layout.tab_pilot_layout)
-public class Pilot  { //extends RoboGuice
+public class Pilot  extends RoboActivity {
 
     @InjectView(R.id.txtName)
-    TextView name;
-    @InjectResource(R.string.app_name)
-    String myName;
+    TextView txtName;
 
-    public Pilot(View view) {
+    @InjectView(R.id.btnSave)
+    Button btnSave;
 
-    }
 
     public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        name.setText("Hello, " + myName);
+        super.onCreate(savedInstanceState);
+
+        txtName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                btnSave.setEnabled(!txtName.getText().toString().trim().isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }
-
-//    EditText txtName;
-//    public Pilot(View view)
-//    {
-//        txtName = (EditText)view.findViewById(R.id.txtName);
-//        EditText txtEmail = (EditText) view.findViewById(R.id.txtEmail);
-//        Spinner cmbBloodGroup = (Spinner) view.findViewById(R.id.cmbBloodGroup);
-//
-//        final Button btnSave = (Button) view.findViewById(R.id.btnSave);
-//
-//        txtName.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                btnSave.setEnabled(!txtName.getText().toString().trim().isEmpty());
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-//    }
