@@ -1,24 +1,38 @@
 package com.example.murat.akuhavkflightbook;
 
-import android.support.v4.app.FragmentTransaction;
+
+import roboguice.activity.RoboActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.google.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+import data.entities.Institution;
+import data.repositories.Repository;
+
+
+
+//public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RoboActivity {
+    @Inject
+    private Repository<Institution> institutionRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
-            transaction.replace(R.id.sample_content_fragment, fragment);
-            transaction.commit();
-        }
+//        if (savedInstanceState == null) {
+//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//            SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
+//            transaction.replace(R.id.sample_content_fragment, fragment);
+//            transaction.commit();
+//        }
+
+        data.entities.Institution institution = new data.entities.Institution();
+        institution.setName("ilk test");
+        institutionRepo.save(institution);
+
     }
 
     @Override
