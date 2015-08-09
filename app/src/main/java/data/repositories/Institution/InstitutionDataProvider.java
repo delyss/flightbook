@@ -1,4 +1,4 @@
-package data.repositories;
+package data.repositories.Institution;
 
 import android.database.SQLException;
 import android.util.Log;
@@ -14,22 +14,20 @@ import data.DbHelper;
 import data.entities.Institution;
 
 /**
- * Created by murat on 09/08/2015. flightbook
+ * Created by murat on 10/08/2015. flightbook
  */
-public class CommonDataProvider<T> implements Provider<RuntimeExceptionDao<T, String>> {
+public class InstitutionDataProvider implements Provider<RuntimeExceptionDao<Institution, String>> {
     private ConnectionSource connectionSource;
-    private Class<T> entity;
 
     @Inject
-    public CommonDataProvider(DbHelper dbHelper, Class<T> entity) {
-        this.entity = entity;
+    public InstitutionDataProvider(DbHelper dbHelper) {
         connectionSource = dbHelper.getConnectionSource();
     }
 
     @Override
-    public RuntimeExceptionDao<T, String> get() {
+    public RuntimeExceptionDao<Institution, String> get() {
         try {
-            Dao<T, String> dao = DaoManager.createDao(connectionSource, entity);
+            Dao<Institution, String> dao = DaoManager.createDao(connectionSource, Institution.class);
             return new RuntimeExceptionDao<>(dao);
         } catch (SQLException e) {
             Log.e("SQL", e.toString());

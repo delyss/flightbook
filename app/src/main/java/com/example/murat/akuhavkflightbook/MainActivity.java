@@ -1,11 +1,16 @@
 package com.example.murat.akuhavkflightbook;
 
 
-import roboguice.activity.RoboActivity;
+
+import data.repositories.Institution.InstitutionRepository;
+import roboguice.activity.RoboFragmentActivity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.google.inject.Inject;
+
+import java.util.List;
 
 import data.entities.Institution;
 import data.repositories.Repository;
@@ -13,25 +18,27 @@ import data.repositories.Repository;
 
 
 //public class MainActivity extends AppCompatActivity {
-public class MainActivity extends RoboActivity {
+public class MainActivity extends RoboFragmentActivity {
     @Inject
-    private Repository<Institution> institutionRepo;
+    private InstitutionRepository institutionRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        if (savedInstanceState == null) {
-//            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//            SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
-//            transaction.replace(R.id.sample_content_fragment, fragment);
-//            transaction.commit();
-//        }
+        if (savedInstanceState == null) {
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
+            transaction.replace(R.id.sample_content_fragment, fragment);
+            transaction.commit();
+        }
 
         data.entities.Institution institution = new data.entities.Institution();
-        institution.setName("ilk test");
+        institution.setName("ikinci test");
         institutionRepo.save(institution);
+
+        List<Institution> ss = institutionRepo.queryForAll();
 
     }
 
