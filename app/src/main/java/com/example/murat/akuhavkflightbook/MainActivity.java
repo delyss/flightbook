@@ -2,9 +2,10 @@ package com.example.murat.akuhavkflightbook;
 
 
 
-import data.repositories.Institution.InstitutionRepository;
+import data.entities.Pilot;
+import data.repositories.Pilot.PilotRepository;
 import roboguice.activity.RoboFragmentActivity;
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,14 +14,12 @@ import com.google.inject.Inject;
 import java.util.List;
 
 import data.entities.Institution;
-import data.repositories.Repository;
-
 
 
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends RoboFragmentActivity {
     @Inject
-    private InstitutionRepository institutionRepo;
+    private PilotRepository pilotRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +33,11 @@ public class MainActivity extends RoboFragmentActivity {
             transaction.commit();
         }
 
-        data.entities.Institution institution = new data.entities.Institution();
-        institution.setName("ikinci test");
-        institutionRepo.save(institution);
+        data.entities.Pilot pilot = new data.entities.Pilot();
+        pilot.setName("ikinci test");
+        pilotRepository.Save(pilot);
 
-        List<Institution> ss = institutionRepo.queryForAll();
+        List<Pilot> ss = pilotRepository.QueryForAll();
 
     }
 

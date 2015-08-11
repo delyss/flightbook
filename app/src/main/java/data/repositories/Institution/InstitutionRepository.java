@@ -22,12 +22,12 @@ public class InstitutionRepository implements IInstitutionRepository {
     }
 
     @Override
-    public List<Institution> queryForAll() {
+    public List<Institution> QueryForAll() {
         return repo.queryForAll();
     }
 
     @Override
-    public void save(Institution entity) {
+    public void Save(Institution entity) {
         repo.createOrUpdate(entity);
     }
 }

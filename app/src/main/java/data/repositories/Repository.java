@@ -20,12 +20,12 @@ public class Repository<T> implements IRepository<T> {
 
 
     @Override
-    public List<T> queryForAll() {
+    public List<T> QueryForAll() {
         return commonEntity.queryForAll();
     }
 
     @Override
-    public void save(T entity) {
+    public void Save(T entity) {
         commonEntity.create(entity);
     }
 }
