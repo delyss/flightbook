@@ -2,22 +2,19 @@ package com.example.murat.akuhavkflightbook;
 
 
 import com.example.murat.akuhavkflightbook.common.view.SlidingTabLayout;
+import com.example.murat.akuhavkflightbook.tabs.definition.Definition;
 import com.example.murat.akuhavkflightbook.tabs.Pilot;
 
 //import com.example.murat.akuhavkflightbook.tabs.Pilot;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 /**
@@ -44,6 +41,10 @@ public class SlidingTabsBasicFragment extends Fragment {
      * Inflates the {@link View} which will be displayed by this {@link Fragment}, from the app's
      * resources.
      */
+
+    public Activity Activity;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -125,8 +126,11 @@ public class SlidingTabsBasicFragment extends Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view;
-            if (position == 0) {
-                view = LoadPilot(container);
+//            if (position == 0) {
+//                view = LoadPilot(container);
+//            }
+            if (position == 1) {
+                view = LoadDefinitions(container);
             }
             else{
                view = LoadSample(container, position);
@@ -155,6 +159,16 @@ public class SlidingTabsBasicFragment extends Fragment {
             container.addView(view);
 
             new Pilot(view);
+            return view;
+        }
+
+        private View LoadDefinitions(ViewGroup container) {
+            View view = getActivity().getLayoutInflater().inflate(R.layout.tab_definition_layout,
+                    container, false);
+
+            container.addView(view);
+
+            new Definition(view, Activity);
             return view;
         }
 

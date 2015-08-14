@@ -1,8 +1,5 @@
 package com.example.murat.akuhavkflightbook;
 
-
-
-import data.entities.Pilot;
 import data.repositories.Pilot.PilotRepository;
 import roboguice.activity.RoboFragmentActivity;
 
@@ -11,9 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.google.inject.Inject;
 
-import java.util.List;
-
-import data.entities.Institution;
 
 
 //public class MainActivity extends AppCompatActivity {
@@ -29,16 +23,10 @@ public class MainActivity extends RoboFragmentActivity {
         if (savedInstanceState == null) {
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
+            fragment.Activity = this;
             transaction.replace(R.id.sample_content_fragment, fragment);
             transaction.commit();
         }
-
-        data.entities.Pilot pilot = new data.entities.Pilot();
-        pilot.setName("ikinci test");
-        pilotRepository.Save(pilot);
-
-        List<Pilot> ss = pilotRepository.QueryForAll();
-
     }
 
     @Override
