@@ -1,6 +1,7 @@
 package com.example.murat.akuhavkflightbook.tabs;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
 
- public class Pilot   {
+ public class Pilot extends Activity {
 
 //    @InjectView(R.id.txtName)
     TextView txtName;
@@ -26,6 +27,12 @@ import roboguice.inject.InjectView;
 //    @InjectView(R.id.btnSave)
     Button btnSave;
 
+
+     @Override
+     public void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+
+     }
 
 
      public Pilot(View view) {

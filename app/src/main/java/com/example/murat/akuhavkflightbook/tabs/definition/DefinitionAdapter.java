@@ -32,7 +32,6 @@ public class DefinitionAdapter extends BaseAdapter {
 
     @Override
     public Definition getItem(int position) {
-        //şöyle de olabilir: public Object getItem(int position)
         return definitionLists.get(position);
     }
 
@@ -46,21 +45,15 @@ public class DefinitionAdapter extends BaseAdapter {
         View satirView;
 
         satirView = layoutInflater.inflate(R.layout.definition_rows, null);
-        TextView textView =
-                (TextView) satirView.findViewById(R.id.txtName);
-        ImageView imageView =
-                (ImageView) satirView.findViewById(R.id.imgLeftIco);
+        TextView textView = (TextView) satirView.findViewById(R.id.txtName);
+        ImageView imageView = (ImageView) satirView.findViewById(R.id.imgLeftIco);
+
+
 
         Definition def = definitionLists.get(position);
 
         textView.setText(def.getName());
-
-//        if (kisi.isKadinMi()) {
-//            imageView.setImageResource(R.drawable.kadin_simge);
-//        }
-//        else {
-//            imageView.setImageResource(R.drawable.adam_simge);
-//        }
+        imageView.setImageResource(R.drawable.ic_launcher);
         return satirView;
     }
 }
