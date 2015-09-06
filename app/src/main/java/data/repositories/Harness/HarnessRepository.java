@@ -28,4 +28,10 @@ public class HarnessRepository implements IHarnessRepository {
 
     @Override
     public void Save(Harness entity) { repo.createOrUpdate(entity); }
+
+    @Override
+    public void Delete(Harness entity) {repo.delete(entity); }
+
+    @Override
+    public Harness Get(int id) { return repo.queryForId( Integer.toString(id)); }
 }

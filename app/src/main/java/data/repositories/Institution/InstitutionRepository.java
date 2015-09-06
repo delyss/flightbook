@@ -30,4 +30,10 @@ public class InstitutionRepository implements IInstitutionRepository {
     public void Save(Institution entity) {
         repo.createOrUpdate(entity);
     }
+
+    @Override
+    public void Delete(Institution entity) {repo.delete(entity); }
+
+    @Override
+    public Institution Get(int id) { return repo.queryForId( Integer.toString(id)); }
 }

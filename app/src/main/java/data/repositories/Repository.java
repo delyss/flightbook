@@ -28,4 +28,10 @@ public class Repository<T> implements IRepository<T> {
     public void Save(T entity) {
         commonEntity.create(entity);
     }
+
+    @Override
+    public void Delete(T entity) {commonEntity.delete(entity); }
+
+    @Override
+    public T Get(int id) { return commonEntity.queryForId( Integer.toString(id));  }
 }

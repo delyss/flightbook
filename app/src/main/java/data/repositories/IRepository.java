@@ -8,4 +8,6 @@ import java.util.List;
 public interface IRepository<T> {
     List<T> QueryForAll();
     void Save(T entity);
+    void Delete(T entity);
+    T Get(int id);
 }

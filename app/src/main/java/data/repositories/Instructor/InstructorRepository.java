@@ -28,4 +28,10 @@ public class InstructorRepository implements IInstructorRepository {
 
     @Override
     public void Save(Instructor entity) { repo.createOrUpdate(entity); }
+
+    @Override
+    public void Delete(Instructor entity) {repo.delete(entity); }
+
+    @Override
+    public Instructor Get(int id) { return repo.queryForId( Integer.toString(id)); }
 }

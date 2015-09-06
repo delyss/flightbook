@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Pilot"
-        android:id="@+id/lblPlilot"
+        android:id="@+id/lbl_edit_Plilot"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal" />
 
@@ -17,24 +17,23 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/txtName"
-        android:hint="Adi" />
+        android:id="@+id/txt_edit_ProfileFirstName"
+        android:hint="first name" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txt_edit_ProfileLastName"
+        android:hint="last name" />
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/txtEmail"
+        android:id="@+id/txt_edit_Email"
         android:hint="E-mail" />
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Kaydet"
-        android:id="@+id/btnSave"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:enabled="false" />
 
 </LinearLayout>

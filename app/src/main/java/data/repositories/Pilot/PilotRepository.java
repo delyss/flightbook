@@ -26,4 +26,10 @@ public class PilotRepository implements IPilotRepository {
 
     @Override
     public void Save(Pilot entity) { repo.createOrUpdate(entity); }
+
+    @Override
+    public void Delete(Pilot entity) {repo.delete(entity); }
+
+    @Override
+    public Pilot Get(int id) { return repo.queryForId( Integer.toString(id));  }
 }

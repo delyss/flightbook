@@ -27,4 +27,10 @@ public class ParaglidingRepository implements IParaglidingRepository {
 
     @Override
     public void Save(Paragliding entity) { repo.createOrUpdate(entity); }
+
+    @Override
+    public void Delete(Paragliding entity) {repo.delete(entity); }
+
+    @Override
+    public Paragliding Get(int id) { return repo.queryForId( Integer.toString(id)); }
 }

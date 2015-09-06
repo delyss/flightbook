@@ -26,4 +26,10 @@ public class TakeoffRepository implements ITakeoffRepository {
 
     @Override
     public void Save(Takeoff entity) { repo.createOrUpdate(entity); }
+
+    @Override
+    public void Delete(Takeoff entity) {repo.delete(entity); }
+
+    @Override
+    public Takeoff Get(int id) { return repo.queryForId( Integer.toString(id)); }
 }
