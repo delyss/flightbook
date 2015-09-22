@@ -20,6 +20,9 @@ public class Pilot {
     @DatabaseField
     private String BloodGroup;
 
+    @DatabaseField
+    private String Email;
+
 //region getters and setters
 
     public Integer getId() {
@@ -42,12 +45,14 @@ public class Pilot {
         Surname = surname;
     }
 
-    public String getBloodGroup() {
-        return BloodGroup;
-    }
+    public String getBloodGroup() { return BloodGroup; }
 
     public void setBloodGroup(String bloodGroup) {
         BloodGroup = bloodGroup;
     }
+
+    public String getEmail() { return Email; }
+
+    public void setEmail(String email) { Email = email; }
 //endregion
 }

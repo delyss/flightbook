@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/txt_edit_Email"
+        android:id="@+id/txt_edit_ProfileEmail"
         android:hint="E-mail" />
 
 </LinearLayout>

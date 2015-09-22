@@ -22,7 +22,7 @@ import data.entities.Pilot;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     @Inject
     public DbHelper(Context context) {

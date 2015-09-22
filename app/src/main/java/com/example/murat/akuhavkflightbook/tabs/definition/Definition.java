@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.murat.akuhavkflightbook.R;
-import com.example.murat.akuhavkflightbook.tabs.Pilot;
+import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionInstructor;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionProfile;
 
 import java.util.ArrayList;
@@ -20,7 +20,6 @@ public class Definition {
 
     private String Name;
     private String Icon;
-    private Activity activity;
 
     public Definition(String name, String icon){
         super();
@@ -31,7 +30,6 @@ public class Definition {
     public Definition(View view, final Activity activity)
     {
         getDefinitionList();
-        this.activity = activity;
         final ListView lwDefinitions = (ListView)view. findViewById(R.id.lwDefinitions);
         DefinitionAdapter adapter = new DefinitionAdapter(activity, definitionLists);
         lwDefinitions.setAdapter(adapter);
@@ -49,7 +47,7 @@ public class Definition {
                         intent = new Intent(activity, DefinitionProfile.class);
                         break;
                     case "Instructor":
-                        intent = new Intent(activity, DefinitionProfile.class);
+                        intent = new Intent(activity, DefinitionInstructor.class);
                         break;
                     case "Takeoff":
                         intent = new Intent(activity, DefinitionProfile.class);
