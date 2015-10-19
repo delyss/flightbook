@@ -42,11 +42,11 @@ public class DefinitionAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View satirView;
+        View rowView;
 
-        satirView = layoutInflater.inflate(R.layout.definition_rows, null);
-        TextView textView = (TextView) satirView.findViewById(R.id.txtName);
-        ImageView imageView = (ImageView) satirView.findViewById(R.id.imgLeftIco);
+        rowView = layoutInflater.inflate(R.layout.definition_rows, null);
+        TextView textView = (TextView) rowView.findViewById(R.id.txtName);
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.imgLeftIco);
 
 
 
@@ -54,6 +54,6 @@ public class DefinitionAdapter extends BaseAdapter {
 
         textView.setText(def.getName());
         imageView.setImageResource(R.drawable.ic_launcher);
-        return satirView;
+        return rowView;
     }
 }

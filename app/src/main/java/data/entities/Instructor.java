@@ -60,6 +60,9 @@ public class Instructor {
     public void setInstitutionId(Integer institutionId) {
         InstitutionId = institutionId;
     }
-
 //endregion
+
+    public String toString() {
+        return java.text.MessageFormat.format("{0} {1}", this.getName(), this.getSurname());
+    }
 }

@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Pilot"
-        android:id="@+id/lbl_edit_Plilot"
+        android:id="@+id/lbl_edit_Pilot"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal" />
 

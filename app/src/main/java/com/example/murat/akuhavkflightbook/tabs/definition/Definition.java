@@ -30,7 +30,7 @@ public class Definition {
     public Definition(View view, final Activity activity)
     {
         getDefinitionList();
-        final ListView lwDefinitions = (ListView)view. findViewById(R.id.lwDefinitions);
+        final ListView lwDefinitions = (ListView)view.findViewById(R.id.lwDefinitions);
         DefinitionAdapter adapter = new DefinitionAdapter(activity, definitionLists);
         lwDefinitions.setAdapter(adapter);
 
@@ -74,7 +74,7 @@ public class Definition {
         return definitionLists;
     }
 
-    //region getters ansd setters
+    //region getters and setters
     public String getName() {
         return Name;
     }
