@@ -24,6 +24,8 @@
             android:name=".tabs.definition.items.DefinitionInstructor"
             android:label="@string/title_activity_definition_instructor" >
         </activity>
+        <activity android:name=".tabs.definition.items.DefinitionWing" >
+        </activity>
     </application>
 
 </manifest>

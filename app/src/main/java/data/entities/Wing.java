@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by murat on 09/08/2015. flightbook
  */
 @DatabaseTable
-public class Paragliding {
+public class Wing {
     @DatabaseField(generatedId = true)
     private Integer Id;
 
@@ -15,7 +15,7 @@ public class Paragliding {
     private String Name;
 
     @DatabaseField
-    private Boolean IsFly;
+    private Boolean Training;
 
     @DatabaseField
     private String Classification;
@@ -41,12 +41,12 @@ public class Paragliding {
         Name = name;
     }
 
-    public Boolean getIsFly() {
-        return IsFly;
+    public Boolean getTraining() {
+        return Training;
     }
 
-    public void setIsFly(Boolean isFly) {
-        IsFly = isFly;
+    public void setTraining(Boolean training) {
+        Training = training;
     }
 
     public String getClassification() {

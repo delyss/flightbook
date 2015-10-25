@@ -14,7 +14,7 @@ import com.j256.ormlite.table.TableUtils;
 import data.entities.Harness;
 import data.entities.Institution;
 import data.entities.Instructor;
-import data.entities.Paragliding;
+import data.entities.Wing;
 import data.entities.Pilot;
 import data.entities.Takeoff;
 
@@ -24,7 +24,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     @Inject
     public DbHelper(Context context) {
@@ -40,7 +40,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Harness.class);
             TableUtils.createTable(connectionSource, Institution.class);
             TableUtils.createTable(connectionSource, Instructor.class);
-            TableUtils.createTable(connectionSource, Paragliding.class);
+            TableUtils.createTable(connectionSource, Wing.class);
 
             //for demo users
             AddDummyInstructors();
@@ -64,7 +64,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Harness.class, true);
             TableUtils.dropTable(connectionSource, Institution.class, true);
             TableUtils.dropTable(connectionSource, Instructor.class, true);
-            TableUtils.dropTable(connectionSource, Paragliding.class, true);
+            TableUtils.dropTable(connectionSource, Wing.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             Log.e(DbHelper.class.getName(),
@@ -131,10 +131,10 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
     private void AddDummyWing() {
         for (int i = 1; i < 4; i++) {
-            Paragliding paragliding = new Paragliding();
-            paragliding.setName(Integer.toString(i)+". Wing");
+            Wing wing = new Wing();
+            wing.setName(Integer.toString(i)+". Wing");
             try {
-                getDao(Paragliding.class).create(paragliding);
+                getDao(Wing.class).create(wing);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

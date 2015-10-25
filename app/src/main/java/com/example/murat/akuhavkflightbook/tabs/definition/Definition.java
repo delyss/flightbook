@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.example.murat.akuhavkflightbook.R;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionInstructor;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionProfile;
+import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionWing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,11 @@ public class Definition {
                     case "Pilot":
                         intent = new Intent(activity, DefinitionProfile.class);
                         break;
-                    case "Instructor":
+                    case "Instructors":
                         intent = new Intent(activity, DefinitionInstructor.class);
+                        break;
+                    case "Wings":
+                        intent = new Intent(activity, DefinitionWing.class);
                         break;
                     case "Takeoff":
                         intent = new Intent(activity, DefinitionProfile.class);
@@ -68,7 +72,8 @@ public class Definition {
     public static List<Definition> getDefinitionList() {
         definitionLists = new ArrayList<>();
         definitionLists.add(new Definition("Pilot", "ico1"));
-        definitionLists.add(new Definition("Instructor", "ico1"));
+        definitionLists.add(new Definition("Instructors", "ico1"));
+        definitionLists.add(new Definition("Wings", "ico1"));
         definitionLists.add(new Definition("Takeoff", "ico1"));
         definitionLists.add(new Definition("Harness", "ico1"));
         return definitionLists;

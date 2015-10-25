@@ -1,4 +1,4 @@
-package data.repositories.Paragliding;
+package data.repositories.Wing;
 
 import android.util.Log;
 
@@ -12,23 +12,23 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.sql.SQLException;
 
 import data.DbHelper;
-import data.entities.Paragliding;
+import data.entities.Wing;
 
 /**
  * Created by murat on 12/08/2015. flightbook
  */
-public class ParaglidingDataProvider implements Provider<RuntimeExceptionDao<Paragliding, String>> {
+public class WingDataProvider implements Provider<RuntimeExceptionDao<Wing, String>> {
     private ConnectionSource connectionSource;
 
     @Inject
-    public ParaglidingDataProvider(DbHelper dbHelper) {
+    public WingDataProvider(DbHelper dbHelper) {
         connectionSource = dbHelper.getConnectionSource();
     }
 
     @Override
-    public RuntimeExceptionDao<Paragliding, String> get() {
+    public RuntimeExceptionDao<Wing, String> get() {
         try {
-            Dao<Paragliding, String> dao = DaoManager.createDao(connectionSource, Paragliding.class);
+            Dao<Wing, String> dao = DaoManager.createDao(connectionSource, Wing.class);
             return new RuntimeExceptionDao<>(dao);
         } catch (SQLException e) {
             Log.e("SQL", e.toString());

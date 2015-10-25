@@ -22,34 +22,22 @@ import static com.example.murat.akuhavkflightbook.R.layout.definition_instructor
 public class DefinitionInstructorAdapter extends BaseAdapter {
     private InstructorRepository instructorRepository;
     private LayoutInflater layoutInflater;
-    private List<DefinitionInstructorItem> definitionInstructorList;
     List<Instructor> allData;
-
-
 
     public DefinitionInstructorAdapter(Activity activity, List<Instructor> instructors, InstructorRepository instructorRepository) {
         layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         allData = instructors;
         this.instructorRepository = instructorRepository;
-        this.definitionInstructorList = Map(instructors);
-    }
-
-    private List<DefinitionInstructorItem> Map(List<Instructor> instructors){
-        List<DefinitionInstructorItem> list = new ArrayList<>();
-        for (Instructor ins : instructors ){
-            list.add(new DefinitionInstructorItem(ins.getId(), ins.toString(), ins.getActive()));
-        }
-        return list;
     }
 
     @Override
     public int getCount() {
-        return definitionInstructorList.size();
+        return allData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return definitionInstructorList.get(position);
+        return allData.get(position);
     }
 
     @Override
@@ -63,10 +51,10 @@ public class DefinitionInstructorAdapter extends BaseAdapter {
 
         rowView = layoutInflater.inflate(definition_instructor_row, null);
         CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.chxInstructorDefinitionRow);
-        DefinitionInstructorItem def = definitionInstructorList.get(position);
+        Instructor def = allData.get(position);
 
         checkBox.setText(def.getName());
-        checkBox.setChecked(def.getAvtive());
+        checkBox.setChecked(def.getActive());
         checkBox.setId(def.getId());
 
         checkBox.setOnClickListener(new View.OnClickListener() {
