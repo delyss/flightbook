@@ -66,5 +66,30 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_weight="0.16" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Classification"
+            android:id="@+id/textView4" />
+
+        <Spinner
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnClassName" />
+
+        <Spinner
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnClassValue" />
+    </LinearLayout>
+
 
 </LinearLayout>

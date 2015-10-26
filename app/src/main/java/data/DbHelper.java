@@ -24,7 +24,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     @Inject
     public DbHelper(Context context) {
@@ -132,6 +132,12 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private void AddDummyWing() {
         for (int i = 1; i < 4; i++) {
             Wing wing = new Wing();
+            wing.setClassName("DHV");
+            wing.setClassValue("1-2");
+            wing.setConstantWing(true);
+            wing.setWeightMin(55);
+            wing.setWeightMax(85);
+            wing.setTraining(false);
             wing.setName(Integer.toString(i)+". Wing");
             try {
                 getDao(Wing.class).create(wing);

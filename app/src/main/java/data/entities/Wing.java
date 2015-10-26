@@ -18,13 +18,21 @@ public class Wing {
     private Boolean Training;
 
     @DatabaseField
-    private String Classification;
+    private String ClassName;
+
+    @DatabaseField
+    private String ClassValue;
 
     @DatabaseField
     private Integer WeightMin;
 
     @DatabaseField
     private Integer WeightMax;
+
+    // this field for instution wings.
+    // not editable
+    @DatabaseField
+    private Boolean ConstantWing;
 
 
 //region getters and setters
@@ -49,12 +57,12 @@ public class Wing {
         Training = training;
     }
 
-    public String getClassification() {
-        return Classification;
+    public String getClassName() {
+        return ClassName;
     }
 
-    public void setClassification(String classification) {
-        Classification = classification;
+    public void setClassName(String className) {
+        ClassName = className;
     }
 
     public Integer getWeightMin() {
@@ -72,6 +80,18 @@ public class Wing {
     public void setWeightMax(Integer weightMax) {
         WeightMax = weightMax;
     }
+
+    public Boolean getConstantWing() {
+        return ConstantWing;
+    }
+
+    public void setConstantWing(Boolean constantWing) {
+        ConstantWing = constantWing;
+    }
+
+    public String getClassValue() { return ClassValue; }
+
+    public void setClassValue(String classValue) { ClassValue = classValue; }
 
 //endregion
 }
