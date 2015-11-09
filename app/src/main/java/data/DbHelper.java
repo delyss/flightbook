@@ -24,7 +24,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 13;
 
     @Inject
     public DbHelper(Context context) {
@@ -41,6 +41,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Institution.class);
             TableUtils.createTable(connectionSource, Instructor.class);
             TableUtils.createTable(connectionSource, Wing.class);
+            TableUtils.createTable(connectionSource, Takeoff.class);
 
             //for demo users
             AddDummyInstructors();
@@ -108,7 +109,15 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private void AddDummyTakeOff() {
         for (int i = 1; i < 4; i++) {
             Takeoff takeoff = new Takeoff();
-            takeoff.setName(Integer.toString(i)+". Takeoff");
+            takeoff.setName("Takeoff_" + Integer.toString(i));
+            takeoff.setAltitude(85);
+            takeoff.setCharacteristic("dummy takeoff");
+            takeoff.setDescription("whoolaleey");
+            takeoff.setLocationCountry("Turkey");
+            takeoff.setLocationCity("Antalya");
+            takeoff.setLocationRegion("Korkuteli");
+            takeoff.setLocationSubRegion("X village");
+            takeoff.setIsConstant(true);
             try {
                 getDao(Takeoff.class).create(takeoff);
             } catch (SQLException e) {
@@ -134,7 +143,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             Wing wing = new Wing();
             wing.setClassName("DHV");
             wing.setClassValue("1-2");
-            wing.setConstantWing(true);
+            wing.setIsConstant(true);
             wing.setWeightMin(55);
             wing.setWeightMax(85);
             wing.setTraining(false);

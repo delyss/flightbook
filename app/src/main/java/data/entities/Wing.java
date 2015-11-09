@@ -32,7 +32,7 @@ public class Wing {
     // this field for instution wings.
     // not editable
     @DatabaseField
-    private Boolean ConstantWing;
+    private Boolean IsConstant;
 
 
 //region getters and setters
@@ -81,12 +81,12 @@ public class Wing {
         WeightMax = weightMax;
     }
 
-    public Boolean getConstantWing() {
-        return ConstantWing;
+    public Boolean getIsConstant() {
+        return IsConstant;
     }
 
-    public void setConstantWing(Boolean constantWing) {
-        ConstantWing = constantWing;
+    public void setIsConstant(Boolean isConstant) {
+        IsConstant = isConstant;
     }
 
     public String getClassValue() { return ClassValue; }

@@ -34,8 +34,6 @@ public class DefinitionWing extends RoboFragmentActivity {
     private final List<String> listClassName =Arrays.asList("DHV", "EN");
     private final List<String> listClassDhvValue =Arrays.asList( "1", "1-2", "2", "2-3", "3" );
     private final List<String> listClassEnValue =Arrays.asList("A", "B", "C", "D");
-
-
     private Wing wing;
 
     @Override
@@ -56,7 +54,12 @@ public class DefinitionWing extends RoboFragmentActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
                 wing = (Wing) arg0.getItemAtPosition(pos);
-                if(!wing.getConstantWing()) ShowWingDeleteDialog(wing);
+                if(wing.getIsConstant()) {
+                    Toast.makeText(getApplicationContext(),
+                            wing.getName() + " can not be deleted..", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                ShowWingDeleteDialog(wing);
                 return true;
             }
         });
@@ -116,14 +119,15 @@ public class DefinitionWing extends RoboFragmentActivity {
         spnClassName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                final String enClassification = "EN";
                 String selectedItem = (String) parent.getItemAtPosition(position);
-                if (selectedItem.equals("EN")) {
+                if (selectedItem.equals(enClassification)) {
                     spnClassValue.setAdapter(adapterClassEnValue);
                 } else {
                     spnClassValue.setAdapter(adapterClassDhvValue);
                 }
                 if (wing.getId() != null) {
-                    if (wing.getClassName().equals("EN")) {
+                    if (wing.getClassName().equals(enClassification)) {
                         spnClassValue.setSelection(listClassEnValue.indexOf(wing.getClassValue()));
                     } else {
                         spnClassValue.setSelection(listClassDhvValue.indexOf(wing.getClassValue()));
@@ -143,7 +147,7 @@ public class DefinitionWing extends RoboFragmentActivity {
         }
 
         alertDialogBuilder.setCancelable(false);
-        if(wing.getId() == null || (wing.getId() != null && !wing.getConstantWing()))
+        if(wing.getId() == null || (wing.getId() != null && !wing.getIsConstant()))
         {
             alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -153,7 +157,7 @@ public class DefinitionWing extends RoboFragmentActivity {
                     wing.setWeightMax(Integer.parseInt(spnWeightMax.getSelectedItem().toString()));
                     wing.setClassName(spnClassName.getSelectedItem().toString());
                     wing.setClassValue(spnClassValue.getSelectedItem().toString());
-                    wing.setConstantWing(false);
+                    wing.setIsConstant(false);
                     wingRepository.Save(wing);
                     LoadList();
                 }

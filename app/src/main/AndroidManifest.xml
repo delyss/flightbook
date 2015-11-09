@@ -26,6 +26,8 @@
         </activity>
         <activity android:name=".tabs.definition.items.DefinitionWing" >
         </activity>
+        <activity android:name=".tabs.definition.items.DefinitionTakeoff" >
+        </activity>
     </application>
 
 </manifest>

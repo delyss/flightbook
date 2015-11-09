@@ -9,11 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.murat.akuhavkflightbook.R;
-
-import java.util.ArrayList;
 import java.util.List;
 import data.entities.Wing;
-import data.repositories.Wing.WingRepository;
 
 import static com.example.murat.akuhavkflightbook.R.layout.definition_wing_row;
 

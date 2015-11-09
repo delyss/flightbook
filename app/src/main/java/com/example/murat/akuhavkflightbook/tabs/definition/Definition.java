@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.example.murat.akuhavkflightbook.R;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionInstructor;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionProfile;
+import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionTakeoff;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionWing;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class Definition {
                         intent = new Intent(activity, DefinitionWing.class);
                         break;
                     case "Takeoff":
-                        intent = new Intent(activity, DefinitionProfile.class);
+                        intent = new Intent(activity, DefinitionTakeoff.class);
                         break;
                     case "Harness":
                         intent = new Intent(activity, DefinitionProfile.class);
