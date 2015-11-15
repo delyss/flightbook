@@ -42,10 +42,10 @@ public class DefinitionTakeoffAdapter extends BaseAdapter {
 
         rowView = layoutInflater.inflate(definition_takeoff_row, null);
         Takeoff def = allData.get(position);
-        TextView txtWingName = (TextView)rowView.findViewById(R.id.textViewDefinitionTakeoffName);
-        TextView txtWingCounter = (TextView)rowView.findViewById(R.id.textViewDefinitionTakeoffCounter);
-        txtWingName.setText(def.getName());
-        txtWingCounter.setText(String.valueOf(position + 1) + ". ");
+        TextView txtTakeoffName = (TextView)rowView.findViewById(R.id.textViewDefinitionTakeoffName);
+        TextView txtTakeoffCounter = (TextView)rowView.findViewById(R.id.textViewDefinitionTakeoffCounter);
+        txtTakeoffName.setText(def.getName());
+        txtTakeoffCounter.setText(String.valueOf(position + 1) + ". ");
         return rowView;
     }
 }

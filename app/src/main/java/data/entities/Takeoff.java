@@ -3,6 +3,10 @@ package data.entities;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import org.roboguice.shaded.goole.common.base.Joiner;
+
+import java.util.List;
+
 /**
  * Created by murat on 12/08/2015. flightbook
  */
@@ -24,16 +28,7 @@ public class Takeoff {
     private String Characteristic;
 
     @DatabaseField
-    private String LocationCountry;
-
-    @DatabaseField
-    private String LocationCity;
-
-    @DatabaseField
-    private String LocationRegion;
-
-    @DatabaseField
-    private String LocationSubRegion;
+    private String Location;
     // not editable
     @DatabaseField
     private Boolean IsConstant;
@@ -52,7 +47,7 @@ public class Takeoff {
         Name = name;
     }
 
-    public int getAltitude() {
+    public Integer getAltitude() {
         return Altitude;
     }
 
@@ -68,44 +63,20 @@ public class Takeoff {
         Description = description;
     }
 
-    public String getCharacteristic() {
-        return Characteristic;
+    public String[] getCharacteristic() {
+        return Characteristic.split(",");
     }
 
-    public void setCharacteristic(String characteristic) {
-        Characteristic = characteristic;
+    public void setCharacteristic(List<String> characteristic) {
+        Characteristic = Joiner.on(",").join(characteristic);
     }
 
-    public String getLocationCountry() {
-        return LocationCountry;
+    public String getLocation() {
+        return Location;
     }
 
-    public void setLocationCountry(String locationCountry) {
-        LocationCountry = locationCountry;
-    }
-
-    public String getLocationCity() {
-        return LocationCity;
-    }
-
-    public void setLocationCity(String locationCity) {
-        LocationCity = locationCity;
-    }
-
-    public String getLocationRegion() {
-        return LocationRegion;
-    }
-
-    public void setLocationRegion(String locationRegion) {
-        LocationRegion = locationRegion;
-    }
-
-    public String getLocationSubRegion() {
-        return LocationSubRegion;
-    }
-
-    public void setLocationSubRegion(String locationSubRegion) {
-        LocationSubRegion = locationSubRegion;
+    public void setLocation(String location) {
+        Location = location;
     }
 
     public Boolean getIsConstant() {

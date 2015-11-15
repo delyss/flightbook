@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -24,7 +25,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 18;
 
     @Inject
     public DbHelper(Context context) {
@@ -66,6 +67,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Institution.class, true);
             TableUtils.dropTable(connectionSource, Instructor.class, true);
             TableUtils.dropTable(connectionSource, Wing.class, true);
+            TableUtils.dropTable(connectionSource, Takeoff.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             Log.e(DbHelper.class.getName(),
@@ -111,12 +113,15 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             Takeoff takeoff = new Takeoff();
             takeoff.setName("Takeoff_" + Integer.toString(i));
             takeoff.setAltitude(85);
-            takeoff.setCharacteristic("dummy takeoff");
-            takeoff.setDescription("whoolaleey");
-            takeoff.setLocationCountry("Turkey");
-            takeoff.setLocationCity("Antalya");
-            takeoff.setLocationRegion("Korkuteli");
-            takeoff.setLocationSubRegion("X village");
+            takeoff.setCharacteristic(new ArrayList<String>(){
+                {
+                    add("Education");
+                    add("Thermic");
+                }});
+            takeoff.setDescription("iste ruzgari soledir, falanca egitim icin elverislidir." +
+                    "su saatten sonra termik kopar kacirma vs..");
+            takeoff.setLocation("Turkey, Antalya, Korkuteli, X village. Falan filan" +
+                    "dagin tepesi kime sorsan soyler.");
             takeoff.setIsConstant(true);
             try {
                 getDao(Takeoff.class).create(takeoff);

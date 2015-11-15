@@ -21,8 +21,8 @@
             android:label="@string/title_activity_definition_profile" >
         </activity>
         <activity
-            android:name=".tabs.definition.items.DefinitionInstructor"
-            android:label="@string/title_activity_definition_instructor" >
+            android:name=".tabs.definition.items.DefinitionHarness"
+            android:label="@string/title_activity_definition_harness" >
         </activity>
         <activity android:name=".tabs.definition.items.DefinitionWing" >
         </activity>

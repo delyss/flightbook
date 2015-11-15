@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_pilot_definition">PilotDefinitionActivity</string>
     <string name="title_activity_definition_profile">DefinitionProfile</string>
-    <string name="title_activity_definition_instructor">DefinitionInstructor</string>
+    <string name="title_activity_definition_harness">DefinitionHarness</string>
     <string name="title_activity_definition_wing">DefinitionWing</string>
     <string name="title_activity_definition_takeoff">DefinitionTakeoff</string>
 </resources>

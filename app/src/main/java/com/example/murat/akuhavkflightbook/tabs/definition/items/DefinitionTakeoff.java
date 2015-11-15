@@ -7,15 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.murat.akuhavkflightbook.R;
 import com.example.murat.akuhavkflightbook.tabs.definition.DefinitionTakeoffAdapter;
 import com.google.inject.Inject;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 import data.entities.Takeoff;
 import data.repositories.Takeoff.TakeoffRepository;
 import roboguice.activity.RoboFragmentActivity;
@@ -70,15 +71,54 @@ public class DefinitionTakeoff extends RoboFragmentActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DefinitionTakeoff.this);
         alertDialogBuilder.setView(promptView);
 
-//        if(takeoff.getId() != null) {
-//
-//        }
+        final EditText txtEditTakeoffName =
+                (EditText)promptView.findViewById(R.id.txtEditTakeoffName);
+        final EditText txtEditTakeoffAltitude =
+                (EditText)promptView.findViewById(R.id.txtEditTakeoffAltitude);
+        final CheckBox chbEditTakeoffEducation =
+                (CheckBox)promptView.findViewById(R.id.chbEditTakeoffEducation);
+        final CheckBox chbEditTakeoffThermic =
+                (CheckBox)promptView.findViewById(R.id.chbEditTakeoffThermic);
+        final CheckBox chbEditTakeoffSoaring =
+                (CheckBox)promptView.findViewById(R.id.chbEditTakeoffSoaring);
+        final CheckBox chbEditTakeoffAboveSea =
+                (CheckBox)promptView.findViewById(R.id.chbEditTakeoffAboveSea);
+        final EditText txtEditTakeoffLocation =
+                (EditText)promptView.findViewById(R.id.txtEditTakeoffLocation);
+        final EditText txtEditTakeoffDescription =
+                (EditText)promptView.findViewById(R.id.txtEditTakeoffDescription);
+
+        if(takeoff.getId() != null) {
+            txtEditTakeoffName.setText(takeoff.getName());
+            txtEditTakeoffAltitude.setText((takeoff.getAltitude()).toString());
+            List<String> characteristics = Arrays.asList(takeoff.getCharacteristic());
+            chbEditTakeoffEducation.setChecked(characteristics.contains("Education"));
+            chbEditTakeoffThermic.setChecked(characteristics.contains("Thermic"));
+            chbEditTakeoffSoaring.setChecked(characteristics.contains("Soaring"));
+            chbEditTakeoffAboveSea.setChecked(characteristics.contains("AboveSea"));
+            txtEditTakeoffLocation.setText(takeoff.getLocation());
+            txtEditTakeoffDescription.setText(takeoff.getDescription());
+        }
+
 
         alertDialogBuilder.setCancelable(false);
-        if(takeoff.getId() == null || !takeoff.getIsConstant())
+        if(takeoff.getId() == null || (takeoff.getId() != null && !takeoff.getIsConstant()))
         {
             alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+                    takeoff.setName(txtEditTakeoffName.getText().toString());
+                    takeoff.setAltitude(Integer.parseInt(txtEditTakeoffAltitude.getText().toString()));
+                    List<String> selectedCharacteristicArr = new ArrayList<>();
+                    if(chbEditTakeoffAboveSea.isChecked()) selectedCharacteristicArr.add("AboveSea");
+                    if(chbEditTakeoffEducation.isChecked()) selectedCharacteristicArr.add("Education");
+                    if(chbEditTakeoffSoaring.isChecked()) selectedCharacteristicArr.add("Soaring");
+                    if(chbEditTakeoffThermic.isChecked()) selectedCharacteristicArr.add("Thermic");
+
+                    takeoff.setCharacteristic(selectedCharacteristicArr);
+                    takeoff.setDescription(txtEditTakeoffDescription.getText().toString());
+                    takeoff.setLocation(txtEditTakeoffLocation.getText().toString());
+                    takeoff.setIsConstant(false);
+                    takeoffRepository.Save(takeoff);
                     LoadList();
                 }
             });
