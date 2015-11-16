@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.murat.akuhavkflightbook.R;
@@ -51,6 +52,11 @@ public class DefinitionWingAdapter extends BaseAdapter {
         TextView txtWingCounter = (TextView)rowView.findViewById(R.id.textViewDefinitionWingCounter);
         txtWingName.setText(def.getName());
         txtWingCounter.setText(String.valueOf(position + 1) + ". ");
+
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.imgWingLeftIco);
+        imageView.setImageResource(R.mipmap.ic_launcher_definition_wing);
+
+
         return rowView;
     }
 }
