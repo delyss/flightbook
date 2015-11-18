@@ -3,17 +3,18 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:paddingLeft="@dimen/activity_vertical_margin">
 
-    <ImageView
-        android:id="@+id/imgWingLeftIco"
-        android:layout_width="59dp"
-        android:layout_height="59dp" />
+    <!--<ImageView-->
+        <!--android:id="@+id/imgWingLeftIco"-->
+        <!--android:layout_width="59dp"-->
+        <!--android:layout_height="59dp" />-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="1. "
         android:id="@+id/textViewDefinitionWingCounter"
         android:paddingTop="15dp"
@@ -22,11 +23,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Wing"
         android:id="@+id/textViewDefinitionWingName"
         android:paddingTop="15dp"
-        android:textColor="@color/primary_material_dark" />
+        android:textColor="#96000000"
+        android:textSize="17dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp" />
 
 
 

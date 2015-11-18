@@ -2,12 +2,14 @@ package com.example.murat.akuhavkflightbook.tabs.definition.items;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -27,7 +29,8 @@ public class DefinitionWing extends RoboFragmentActivity {
 
     @Inject private WingRepository wingRepository;
     private @InjectView(R.id.lwWings) ListView lwWings;
-    private @InjectView(R.id.btnAddWing)Button btnAddWing;
+    private @InjectView(R.id.btnAddWing) FloatingActionButton btnAddWing;
+    private @InjectView (R.id.toolbar) Toolbar toolbar;
     private final List<String> listWeightRange =Arrays.asList(
             "55", "60", "65", "70", "75", "85", "95", "105", "115", "120", "125", "130"
     );
@@ -40,6 +43,10 @@ public class DefinitionWing extends RoboFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definition_wing);
+
+        toolbar.setTitle("     Wings");
+        toolbar.setLogo(R.mipmap.ic_launcher_definition_wing);
+        toolbar.setBackgroundColor(Color.rgb(2,136,209));
 
         LoadList();
         lwWings.setClickable(true);

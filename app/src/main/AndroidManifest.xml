@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".tabs.definition.items.DefinitionTakeoff" >
         </activity>
+        <activity android:name=".tabs.flight.Flight" >
+        </activity>
     </application>
 
 </manifest>

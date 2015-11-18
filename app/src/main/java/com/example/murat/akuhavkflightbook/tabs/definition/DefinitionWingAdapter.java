@@ -53,8 +53,8 @@ public class DefinitionWingAdapter extends BaseAdapter {
         txtWingName.setText(def.getName());
         txtWingCounter.setText(String.valueOf(position + 1) + ". ");
 
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.imgWingLeftIco);
-        imageView.setImageResource(R.mipmap.ic_launcher_definition_wing);
+//        ImageView imageView = (ImageView) rowView.findViewById(R.id.imgWingLeftIco);
+//        imageView.setImageResource(R.mipmap.ic_launcher_definition_wing);
 
 
         return rowView;

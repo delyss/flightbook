@@ -3,9 +3,8 @@ package com.example.murat.akuhavkflightbook;
 
 import com.example.murat.akuhavkflightbook.common.view.SlidingTabLayout;
 import com.example.murat.akuhavkflightbook.tabs.definition.Definition;
-import com.example.murat.akuhavkflightbook.tabs.Pilot;
+import com.example.murat.akuhavkflightbook.tabs.flight.Flight;
 
-//import com.example.murat.akuhavkflightbook.tabs.Pilot;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -126,10 +125,10 @@ public class SlidingTabsBasicFragment extends Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view;
-//            if (position == 0) {
-//                view = LoadPilot(container);
-//            }
-            if (position == 1) {
+            if (position == 0) {
+                view = LoadFlights(container);
+            }
+            else if (position == 1) {
                 view = LoadDefinitions(container);
             }
             else{
@@ -152,16 +151,6 @@ public class SlidingTabsBasicFragment extends Fragment {
             return view;
         }
 
-        private View LoadPilot(ViewGroup container) {
-            View view = getActivity().getLayoutInflater().inflate(R.layout.tab_pilot_layout,
-                    container, false);
-
-            container.addView(view);
-
-            new Pilot(view);
-            return view;
-        }
-
         private View LoadDefinitions(ViewGroup container) {
             View view = getActivity().getLayoutInflater().inflate(R.layout.tab_definition_layout,
                     container, false);
@@ -169,6 +158,16 @@ public class SlidingTabsBasicFragment extends Fragment {
             container.addView(view);
 
             new Definition(view, Activity);
+            return view;
+        }
+
+        private View LoadFlights(ViewGroup container) {
+            View view = getActivity().getLayoutInflater().inflate(R.layout.tab_flight_layout,
+                    container, false);
+
+            container.addView(view);
+
+            new Flight();
             return view;
         }
 

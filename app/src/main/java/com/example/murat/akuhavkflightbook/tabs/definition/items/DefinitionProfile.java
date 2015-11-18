@@ -2,7 +2,10 @@ package com.example.murat.akuhavkflightbook.tabs.definition.items;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,15 +28,20 @@ public class DefinitionProfile extends RoboFragmentActivity {
 
     @Inject
     private PilotRepository pilotRepository;
-    private @InjectView(R.id.btnEdit) Button btnEdit;
+
     private @InjectView(R.id.txtProfileFirstName) TextView txtProfileFirstName;
     private @InjectView(R.id.txtProfileEmail) TextView txtProfileEmail;
-
+    private @InjectView(R.id.btnEdit) FloatingActionButton btnEdit;
+    private @InjectView (R.id.toolbar) Toolbar toolbar;
     private Pilot pilot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definition_profile);
+
+        toolbar.setTitle("     Profile");
+        toolbar.setLogo(R.mipmap.ic_launcher_definition_pilot);
+        toolbar.setBackgroundColor(Color.rgb(61,187,245));
 
         List<Pilot> pilotList = pilotRepository.QueryForAll();
         if(pilotList.size() > 0) {

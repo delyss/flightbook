@@ -2,7 +2,10 @@ package com.example.murat.akuhavkflightbook.tabs.definition.items;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,13 +29,18 @@ public class DefinitionTakeoff extends RoboFragmentActivity {
 
     @Inject private TakeoffRepository takeoffRepository;
     private @InjectView(R.id.lwTakeoffs) ListView lwTakeoffs;
-    private @InjectView(R.id.btnAddTakeoff) Button btnAddTakeoff;
+    private @InjectView(R.id.btnAddTakeoff) FloatingActionButton btnAddTakeoff;
+    private @InjectView (R.id.toolbar) Toolbar toolbar;
     private Takeoff takeoff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definition_takeoff);
+
+        toolbar.setTitle("     Takeoff");
+        toolbar.setLogo(R.mipmap.ic_launcher_definition_takeoff);
+        toolbar.setBackgroundColor(Color.rgb(68,138,255));
 
         LoadList();
         lwTakeoffs.setClickable(true);

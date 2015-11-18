@@ -2,6 +2,7 @@ package com.example.murat.akuhavkflightbook.tabs.definition;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,12 +49,13 @@ public class DefinitionAdapter extends BaseAdapter {
         TextView textView = (TextView) rowView.findViewById(R.id.txtName);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imgLeftIco);
 
-
-
         Definition def = definitionLists.get(position);
 
         textView.setText(def.getName());
-        imageView.setImageResource(R.drawable.ic_launcher);
+        textView.setTextColor(Color.WHITE);
+
+        rowView.setBackgroundColor(def.getBgColor());
+        imageView.setImageResource(def.getIcon());
         return rowView;
     }
 }
