@@ -15,11 +15,14 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.example.murat.akuhavkflightbook.R;
 import com.example.murat.akuhavkflightbook.tabs.definition.DefinitionWingAdapter;
 import com.google.inject.Inject;
+
 import java.util.Arrays;
 import java.util.List;
+
 import data.entities.Wing;
 import data.repositories.Wing.WingRepository;
 import roboguice.activity.RoboFragmentActivity;
@@ -27,16 +30,23 @@ import roboguice.inject.InjectView;
 
 public class DefinitionWing extends RoboFragmentActivity {
 
-    @Inject private WingRepository wingRepository;
-    private @InjectView(R.id.lwWings) ListView lwWings;
-    private @InjectView(R.id.btnAddWing) FloatingActionButton btnAddWing;
-    private @InjectView (R.id.toolbar) Toolbar toolbar;
-    private final List<String> listWeightRange =Arrays.asList(
+    @Inject
+    private WingRepository wingRepository;
+    private
+    @InjectView(R.id.lwWings)
+    ListView lwWings;
+    private
+    @InjectView(R.id.btnAddWing)
+    FloatingActionButton btnAddWing;
+    private
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
+    private final List<String> listWeightRange = Arrays.asList(
             "55", "60", "65", "70", "75", "85", "95", "105", "115", "120", "125", "130"
     );
-    private final List<String> listClassName =Arrays.asList("DHV", "EN");
-    private final List<String> listClassDhvValue =Arrays.asList( "1", "1-2", "2", "2-3", "3" );
-    private final List<String> listClassEnValue =Arrays.asList("A", "B", "C", "D");
+    private final List<String> listClassName = Arrays.asList("DHV", "EN");
+    private final List<String> listClassDhvValue = Arrays.asList("1", "1-2", "2", "2-3", "3");
+    private final List<String> listClassEnValue = Arrays.asList("A", "B", "C", "D");
     private Wing wing;
 
     @Override
@@ -46,7 +56,7 @@ public class DefinitionWing extends RoboFragmentActivity {
 
         toolbar.setTitle("     Wings");
         toolbar.setLogo(R.mipmap.ic_launcher_definition_wing);
-        toolbar.setBackgroundColor(Color.rgb(2,136,209));
+        toolbar.setBackgroundColor(Color.rgb(2, 136, 209));
 
         LoadList();
         lwWings.setClickable(true);
@@ -61,7 +71,7 @@ public class DefinitionWing extends RoboFragmentActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
                 wing = (Wing) arg0.getItemAtPosition(pos);
-                if(wing.getIsConstant()) {
+                if (wing.getIsConstant()) {
                     Toast.makeText(getApplicationContext(),
                             wing.getName() + " can not be deleted..", Toast.LENGTH_SHORT).show();
                     return true;
@@ -81,7 +91,7 @@ public class DefinitionWing extends RoboFragmentActivity {
 
     private void ShowWingDeleteDialog(final Wing wing) {
         new AlertDialog.Builder(this)
-                .setTitle("Delete "+wing.getName())
+                .setTitle("Delete " + wing.getName())
                 .setMessage("Are you sure you want to delete this wing?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -141,11 +151,13 @@ public class DefinitionWing extends RoboFragmentActivity {
                     }
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
 
-        if(wing.getId() != null) {
+        if (wing.getId() != null) {
             txtWingName.setText(wing.getName());
             radioTraining.setChecked(wing.getTraining());
             spnWeightMin.setSelection(listWeightRange.indexOf(wing.getWeightMin().toString()));
@@ -154,8 +166,7 @@ public class DefinitionWing extends RoboFragmentActivity {
         }
 
         alertDialogBuilder.setCancelable(false);
-        if(wing.getId() == null || (wing.getId() != null && !wing.getIsConstant()))
-        {
+        if (wing.getId() == null || (wing.getId() != null && !wing.getIsConstant())) {
             alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     wing.setName(txtWingName.getText().toString());
@@ -179,7 +190,7 @@ public class DefinitionWing extends RoboFragmentActivity {
         alertDialogBuilder.create().show();
     }
 
-    private void LoadList(){
+    private void LoadList() {
         final List<Wing> wings = wingRepository.QueryForAll();
         DefinitionWingAdapter adapter = new DefinitionWingAdapter(this, wings);
         lwWings.setAdapter(adapter);

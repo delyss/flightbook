@@ -1,24 +1,28 @@
 package com.example.murat.akuhavkflightbook;
 
-import data.repositories.Pilot.PilotRepository;
-import roboguice.activity.RoboFragmentActivity;
 
+import roboguice.activity.RoboFragmentActivity;
+import roboguice.inject.InjectView;
+
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.google.inject.Inject;
-
 
 
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends RoboFragmentActivity {
-    @Inject
-    private PilotRepository pilotRepository;
 
+    private @InjectView(R.id.toolbar) Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar.setTitle("     FLIGHT BOOK");
+        toolbar.setBackgroundColor(Color.rgb(0,153,153));
+        toolbar.setTitleTextColor(Color.DKGRAY);
 
         if (savedInstanceState == null) {
             android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

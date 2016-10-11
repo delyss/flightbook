@@ -6,11 +6,6 @@
     android:weightSum="1"
     android:paddingLeft="@dimen/activity_vertical_margin">
 
-    <!--<ImageView-->
-        <!--android:id="@+id/imgWingLeftIco"-->
-        <!--android:layout_width="59dp"-->
-        <!--android:layout_height="59dp" />-->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +26,5 @@
         android:textSize="17dp"
         android:paddingLeft="10dp"
         android:paddingBottom="10dp" />
-
-
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.example.murat.akuhavkflightbook.R;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionHarness;
+import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionInstructor;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionProfile;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionTakeoff;
 import com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionWing;
@@ -60,6 +61,9 @@ public class Definition {
                     case "Harness":
                         intent = new Intent(activity, DefinitionHarness.class);
                         break;
+                    case "Instructor":
+                        intent = new Intent(activity, DefinitionInstructor.class);
+                        break;
                     default:
                         intent = new Intent(activity, DefinitionProfile.class);
                         break;
@@ -79,6 +83,8 @@ public class Definition {
         definitionLists.add(new Definition("Takeoff", R.mipmap.ic_launcher_definition_takeoff,
                 Color.rgb(68,138,255)));
         definitionLists.add(new Definition("Harness", R.mipmap.ic_launcher_definition_harness,
+                Color.rgb(68,121,211)));
+        definitionLists.add(new Definition("Instructor", R.mipmap.ic_launcher_definition_harness,
                 Color.rgb(68,121,211)));
         return definitionLists;
     }

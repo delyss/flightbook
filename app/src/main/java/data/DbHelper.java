@@ -25,7 +25,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 20;
 
     @Inject
     public DbHelper(Context context) {
@@ -134,27 +134,35 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
     private void AddDummyHarness() {
         Harness harness1 = new Harness();
         harness1.setName("Avasport Cruiser small");
+        harness1.setIsConstant(true);
         ///
         Harness harness2 = new Harness();
         harness2.setName("Avasport Cruiser medium");
+        harness2.setIsConstant(true);
         ///
         Harness harness3 = new Harness();
         harness3.setName("Avasport Cruiser large");
+        harness3.setIsConstant(true);
         ///
         Harness harness4 = new Harness();
         harness4.setName("Woody Valley Velvet 2 small");
+        harness4.setIsConstant(true);
         ///
         Harness harness5 = new Harness();
         harness5.setName("Woody Valley Velvet 2 medium");
+        harness5.setIsConstant(true);
         ///
         Harness harness6 = new Harness();
         harness6.setName("Swing Connect 2 small");
+        harness6.setIsConstant(true);
         ///
         Harness harness7 = new Harness();
         harness7.setName("Swing Connect 2 medium");
+        harness7.setIsConstant(true);
         ///
         Harness harness8 = new Harness();
         harness8.setName("Woody Valley Velvet 2 large");
+        harness8.setIsConstant(true);
         try {
             getDao(Harness.class).create(harness1);
             getDao(Harness.class).create(harness2);

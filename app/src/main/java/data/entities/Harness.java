@@ -17,6 +17,11 @@ public class Harness {
     @DatabaseField
     private String Size;
 
+    // this field for instution harness.
+    // not editable
+    @DatabaseField
+    private Boolean IsConstant;
+
 //region getters and setters
 
     public Integer getId() {
@@ -37,6 +42,14 @@ public class Harness {
 
     public void setSize(String size) {
         Size = size;
+    }
+
+    public Boolean getIsConstant() {
+        return IsConstant;
+    }
+
+    public void setIsConstant(Boolean constant) {
+        IsConstant = constant;
     }
 
 //endregion

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.TextView;
+
 import com.example.murat.akuhavkflightbook.R;
 import java.util.List;
 
@@ -49,34 +51,14 @@ public class DefinitionHarnessAdapter extends BaseAdapter {
         View rowView;
 
         rowView = layoutInflater.inflate(definition_harness_row, null);
-        CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.chxHarnessDefinitionRow);
+        TextView textViewDefinitionHarnessName =
+                (TextView) rowView.findViewById(R.id.textViewDefinitionHarnessName);
+        TextView textViewDefinitionHarnessCounter =
+                (TextView)rowView.findViewById(R.id.textViewDefinitionHarnessCounter);
         Harness def = allData.get(position);
 
-        checkBox.setText(def.getName());
-        //checkBox.setChecked(def.getActive());
-        checkBox.setId(def.getId());
-
-        checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CheckBox cb = (CheckBox) v ;
-                Harness ins = findById(cb.getId());
-                if (ins != null) {
-                    //ins.setActive(cb.isChecked());
-                    harnessRepository.Save(ins);
-                }
-            }
-        });
-
+        textViewDefinitionHarnessName.setText(def.getName());
+        textViewDefinitionHarnessCounter.setText(String.valueOf(position + 1) + ". ");
         return rowView;
-    }
-    
-    private Harness findById(int id){
-        for (Harness ins: allData ) {
-            if(ins.getId() == id) {
-                return ins;
-            }
-        }
-        return null;
     }
 }

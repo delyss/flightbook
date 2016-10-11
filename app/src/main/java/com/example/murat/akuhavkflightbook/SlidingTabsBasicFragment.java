@@ -3,10 +3,11 @@ package com.example.murat.akuhavkflightbook;
 
 import com.example.murat.akuhavkflightbook.common.view.SlidingTabLayout;
 import com.example.murat.akuhavkflightbook.tabs.definition.Definition;
-import com.example.murat.akuhavkflightbook.tabs.flight.Flight;
+import com.example.murat.akuhavkflightbook.tabs.flight.Flights;
 
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -74,6 +75,7 @@ public class SlidingTabsBasicFragment extends Fragment {
         // it's PagerAdapter set.
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
+        mSlidingTabLayout.setBackgroundColor(Color.rgb(157,187,184));
         // END_INCLUDE (setup_slidingtablayout)
     }
     // END_INCLUDE (fragment_onviewcreated)
@@ -114,7 +116,15 @@ public class SlidingTabsBasicFragment extends Fragment {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Item " + (position + 1);
+            if (position == 0) {
+                return "Flights";
+            }
+            else if (position == 1) {
+                return "Definition";
+            }
+            else{
+                return "Reports";
+            }
         }
         // END_INCLUDE (pageradapter_getpagetitle)
 
@@ -167,7 +177,7 @@ public class SlidingTabsBasicFragment extends Fragment {
 
             container.addView(view);
 
-            new Flight();
+            new Flights(view, Activity);
             return view;
         }
 

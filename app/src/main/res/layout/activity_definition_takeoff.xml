@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.murat.akuhavkflightbook.tabs.definition.items.DefinitionTakeoff">
 
+
     <android.support.design.widget.FloatingActionButton android:id="@+id/btnAddTakeoff"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
@@ -25,13 +26,6 @@
                 android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.AppBarLayout>
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Takeoffs"
-            android:id="@+id/textView3" />
 
         <ListView
             android:layout_width="fill_parent"
