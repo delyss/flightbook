@@ -11,13 +11,7 @@ import java.util.List;
  * Created by murat on 12/08/2015. flightbook
  */
 @DatabaseTable
-public class Takeoff {
-    @DatabaseField(generatedId = true)
-    private Integer Id;
-
-    @DatabaseField
-    private String Name;
-
+public class Takeoff  extends BaseEntity{
     @DatabaseField
     private int Altitude;
 
@@ -34,18 +28,6 @@ public class Takeoff {
     private Boolean IsConstant;
 
 //region getters and setters
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
 
     public Integer getAltitude() {
         return Altitude;

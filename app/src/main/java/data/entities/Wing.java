@@ -7,13 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by murat on 09/08/2015. flightbook
  */
 @DatabaseTable
-public class Wing {
-    @DatabaseField(generatedId = true)
-    private Integer Id;
-
-    @DatabaseField
-    private String Name;
-
+public class Wing extends BaseEntity {
     @DatabaseField
     private Boolean Training;
 
@@ -36,18 +30,6 @@ public class Wing {
 
 
 //region getters and setters
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
 
     public Boolean getTraining() {
         return Training;

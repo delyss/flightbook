@@ -7,13 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by murat on 09/08/2015. flightbook
  */
 @DatabaseTable
-public class Instructor {
-    @DatabaseField(generatedId = true)
-    private Integer Id;
-
-    @DatabaseField
-    private String Name;
-
+public class Instructor extends BaseEntity{
     @DatabaseField
     private String Surname;
 
@@ -24,18 +18,6 @@ public class Instructor {
     private Integer InstitutionId;
 
 //region getters and setters
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
 
     public String getSurname() {
         return Surname;

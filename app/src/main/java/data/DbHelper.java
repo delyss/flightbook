@@ -12,6 +12,7 @@ import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import data.entities.Flight;
 import data.entities.Harness;
 import data.entities.Institution;
 import data.entities.Instructor;
@@ -25,7 +26,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 22;
 
     @Inject
     public DbHelper(Context context) {
@@ -43,6 +44,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Instructor.class);
             TableUtils.createTable(connectionSource, Wing.class);
             TableUtils.createTable(connectionSource, Takeoff.class);
+            TableUtils.createTable(connectionSource, Flight.class);
 
             //for demo users
             AddDummyInstructors();
@@ -68,6 +70,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Instructor.class, true);
             TableUtils.dropTable(connectionSource, Wing.class, true);
             TableUtils.dropTable(connectionSource, Takeoff.class, true);
+            TableUtils.dropTable(connectionSource, Flight.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             Log.e(DbHelper.class.getName(),

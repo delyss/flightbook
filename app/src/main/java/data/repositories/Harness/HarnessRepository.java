@@ -9,12 +9,10 @@ import java.util.List;
 
 import data.entities.Harness;
 
-
 /**
  * Created by murat on 09/08/2015. flightbook
  */
 public class HarnessRepository implements IHarnessRepository {
-
     private RuntimeExceptionDao<Harness, String> repo;
 
 
