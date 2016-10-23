@@ -2,26 +2,28 @@ package com.example.murat.akuhavkflightbook.tabs.flight;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.app.DialogFragment;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.murat.akuhavkflightbook.BaseEntitySpinAdapter;
 import com.example.murat.akuhavkflightbook.R;
 import com.google.inject.Inject;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import data.entities.BaseEntity;
+import data.entities.Flight;
+import data.repositories.Flight.FlightRepository;
 import data.repositories.Harness.HarnessRepository;
 import data.repositories.Instructor.InstructorRepository;
 import data.repositories.Takeoff.TakeoffRepository;
@@ -40,6 +42,8 @@ public class EditFlight extends RoboFragmentActivity {
     InstructorRepository instructorRepository;
     @Inject
     TakeoffRepository takeoffRepository;
+    @Inject
+    FlightRepository flightRepository;
 
     @InjectView(R.id.spnHarness)
     Spinner spnHarness;
@@ -52,8 +56,29 @@ public class EditFlight extends RoboFragmentActivity {
     @InjectView(R.id.spnInstructorTakeOff)
     Spinner spnInstructorTakeOff;
 
-    static Button btnEditFlightDate;
+    @InjectView(R.id.seekbarScoreTakeoff)
+    SeekBar seekbarScorTakeoff;
+    @InjectView(R.id.seekbarScoreFlight)
+    SeekBar seekbarScorFlight;
+    @InjectView(R.id.seekbarScoreLanding)
+    SeekBar seekbarScorLanding;
 
+    @InjectView(R.id.lblScoreTakeoff)
+    TextView lblScoreTakeoff;
+    @InjectView(R.id.lblScoreFlight)
+    TextView lblScoreFlight;
+    @InjectView(R.id.lblScoreLanding)
+    TextView lblScoreLanding;
+
+    @InjectView(R.id.txtEvalTakeoff)
+    EditText txtEvalTakeoff;
+    @InjectView(R.id.txtEvalFlight)
+    EditText txtEvalFlight;
+    @InjectView(R.id.txtEvalLanding)
+    EditText txtEvalLanding;
+
+    static Button btnEditFlightDate;
+    static Date flightDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,22 +91,60 @@ public class EditFlight extends RoboFragmentActivity {
         fillSpinner(spnInstructorLanding, instructorRepository.QueryForAll());
         fillSpinner(spnInstructorTakeOff, instructorRepository.QueryForAll());
         fillSpinner(spnTakeOff, takeoffRepository.QueryForAll());
+        addSeekBarEvents(seekbarScorFlight, lblScoreFlight);
+        addSeekBarEvents(seekbarScorLanding, lblScoreLanding);
+        addSeekBarEvents(seekbarScorTakeoff, lblScoreTakeoff);
+    }
 
-        Button btnSave = (Button) findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int harnessId = ((BaseEntity) spnHarness.getSelectedItem()).getId();
-                        int wingId = ((BaseEntity) spnHarness.getSelectedItem()).getId();
-                        Toast.makeText(getApplicationContext(), harnessId + "-" + wingId, Toast.LENGTH_LONG).show();
-                    }
-                });
+    public void saveFlight(View v) {
+
+        int harnessId = ((BaseEntity) spnHarness.getSelectedItem()).getId();
+        int wingId = ((BaseEntity) spnWing.getSelectedItem()).getId();
+        int takeOffId = ((BaseEntity) spnTakeOff.getSelectedItem()).getId();
+        int insLandId = ((BaseEntity) spnInstructorLanding.getSelectedItem()).getId();
+        int insTakeoffdId = ((BaseEntity) spnInstructorTakeOff.getSelectedItem()).getId();
+
+        Flight f = new Flight();
+        f.setFlightDate(flightDate);
+        f.setHarnessId(harnessId);
+        f.setInstructorIdLanding(insLandId);
+        f.setWingId(wingId);
+        f.setTakeoffId(takeOffId);
+        f.setInstructorIdTakeoff(insTakeoffdId);
+        f.setNoteFlight(txtEvalFlight.getText().toString());
+        f.setNoteLanding(txtEvalLanding.getText().toString());
+        f.setNoteTakeoff(txtEvalTakeoff.getText().toString());
+        f.setScoreFlight(seekbarScorFlight.getProgress());
+        f.setScoreLanding(seekbarScorLanding.getProgress());
+        f.setScoreTakeoff(seekbarScorTakeoff.getProgress());
+
+        flightRepository.Save(f);
+
+        Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_LONG).show();
+    }
+
+    private void addSeekBarEvents(SeekBar sb, final TextView lbl) {
+
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                lbl.setText(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
 
 
-    private SpinAdapter fillSpinner(Spinner spn, List<?> list) {
-        SpinAdapter adapter = new SpinAdapter<>(this, android.R.layout.simple_spinner_item, list);
+    private BaseEntitySpinAdapter fillSpinner(Spinner spn, List<?> list) {
+        BaseEntitySpinAdapter adapter = new BaseEntitySpinAdapter<>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spn.setAdapter(adapter);
         return adapter;
@@ -102,6 +165,7 @@ public class EditFlight extends RoboFragmentActivity {
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
+            flightDate = c.getTime();
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
@@ -113,59 +177,3 @@ public class EditFlight extends RoboFragmentActivity {
     }
 }
 
-class SpinAdapter<T> extends ArrayAdapter<T> {
-
-    // Your sent context
-    private Context context;
-    // Your custom values for the spinner (User)
-    private List<T> values;
-
-    public SpinAdapter(Context context, int textViewResourceId,
-                       List<T> values) {
-        super(context, textViewResourceId, values);
-        this.context = context;
-        this.values = values;
-
-    }
-
-    public int getCount() {
-        return values.size();
-    }
-
-    public T getItem(int position) {
-        return values.get(position);
-    }
-
-    public long getItemId(int position) {
-        return position;
-    }
-
-    // And the "magic" goes here
-    // This is for the "passive" state of the spinner
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
-        TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
-        label.setTextSize(20);
-        // Then you can get the current item using the values array (Users array) and the current position
-        // You can NOW reference each method you has created in your bean object (User class)
-        label.setText(((BaseEntity) values.get(position)).getName());
-
-        // And finally return your dynamic (or custom) view for each spinner item
-        return label;
-    }
-
-    // And here is when the "chooser" is popped up
-    // Normally is the same view, but you can customize it if you want
-    @Override
-    public View getDropDownView(int position, View convertView,
-                                ViewGroup parent) {
-        TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
-        label.setTextSize(20);
-        label.setText(((BaseEntity) values.get(position)).getName());
-
-        return label;
-    }
-}

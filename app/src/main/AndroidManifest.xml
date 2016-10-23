@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.murat.akuhavkflightbook" >
+    package="com.example.murat.akuhavkflightbook">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:configChanges="keyboardHidden|orientation|screenSize">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,24 +19,18 @@
         </activity>
         <activity
             android:name=".tabs.definition.items.DefinitionProfile"
-            android:label="@string/title_activity_definition_profile"
-            android:configChanges="keyboardHidden|orientation|screenSize">
-        </activity>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_definition_profile"></activity>
         <activity
             android:name=".tabs.definition.items.DefinitionHarness"
-            android:label="@string/title_activity_definition_harness"
-            android:configChanges="keyboardHidden|orientation|screenSize">
-        </activity>
-        <activity android:name=".tabs.definition.items.DefinitionWing" >
-        </activity>
-        <activity android:name=".tabs.definition.items.DefinitionTakeoff" >
-        </activity>
-        <activity android:name=".tabs.definition.items.DefinitionInstructor" >
-        </activity>
-        <activity android:name=".tabs.flight.Flights" >
-        </activity>
-        <activity android:name=".tabs.flight.EditFlight" >
-        </activity>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_definition_harness"></activity>
+        <activity android:name=".tabs.definition.items.DefinitionWing"></activity>
+        <activity android:name=".tabs.definition.items.DefinitionTakeoff"></activity>
+        <activity android:name=".tabs.definition.items.DefinitionInstructor"></activity>
+        <activity android:name=".tabs.flight.Flights"></activity>
+        <activity android:name=".tabs.flight.EditFlight"></activity>
+        <activity android:name=".tabs.flight.FlightList"></activity>
     </application>
 
 </manifest>

@@ -6,15 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.example.murat.akuhavkflightbook.R;
-import com.google.inject.Inject;
 
-import data.repositories.Harness.HarnessRepository;
 import roboguice.activity.RoboFragmentActivity;
 
 public class Flights extends RoboFragmentActivity {
-
-    @Inject
-    private HarnessRepository harnessRepository;
 
     public Flights(View view, final Activity activity) {
         FloatingActionButton btnAddFlight = (FloatingActionButton) view.findViewById(R.id.btnAddFlight);
@@ -22,7 +17,14 @@ public class Flights extends RoboFragmentActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, EditFlight.class);
-                intent.putExtra("test", "mesaj");
+                activity.startActivity(intent);
+            }
+        });
+        FloatingActionButton btnFlightList = (FloatingActionButton) view.findViewById(R.id.btnFlightList);
+        btnFlightList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, FlightList.class);
                 activity.startActivity(intent);
             }
         });
