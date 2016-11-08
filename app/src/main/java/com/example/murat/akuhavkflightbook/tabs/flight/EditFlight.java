@@ -35,15 +35,15 @@ import roboguice.inject.InjectView;
 public class EditFlight extends RoboFragmentActivity {
 
     @Inject
-    HarnessRepository harnessRepository;
+    private HarnessRepository harnessRepository;
     @Inject
-    WingRepository wingRepository;
+    private WingRepository wingRepository;
     @Inject
-    InstructorRepository instructorRepository;
+    private InstructorRepository instructorRepository;
     @Inject
-    TakeoffRepository takeoffRepository;
+    private TakeoffRepository takeoffRepository;
     @Inject
-    FlightRepository flightRepository;
+    private FlightRepository flightRepository;
 
     @InjectView(R.id.spnHarness)
     Spinner spnHarness;

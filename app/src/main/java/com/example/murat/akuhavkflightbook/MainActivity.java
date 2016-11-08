@@ -1,6 +1,9 @@
 package com.example.murat.akuhavkflightbook;
 
 
+import android.content.Intent;
+import com.google.inject.Inject;
+import data.repositories.Pilot.PilotRepository;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
@@ -14,14 +17,24 @@ import android.view.MenuItem;
 //public class MainActivity extends AppCompatActivity {
 public class MainActivity extends RoboFragmentActivity {
 
-    private @InjectView(R.id.toolbar) Toolbar toolbar;
+    @Inject
+    private PilotRepository pilotRepository;
+    private
+    @InjectView(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (!isRegistered()) {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
+        }
+
         toolbar.setTitle("     FLIGHT BOOK");
-        toolbar.setBackgroundColor(Color.rgb(0,153,153));
+        toolbar.setBackgroundColor(Color.rgb(0, 153, 153));
         toolbar.setTitleTextColor(Color.DKGRAY);
 
         if (savedInstanceState == null) {
@@ -32,6 +45,7 @@ public class MainActivity extends RoboFragmentActivity {
             transaction.commit();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,5 +61,9 @@ public class MainActivity extends RoboFragmentActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isRegistered() {
+        return pilotRepository.isRegistered();
     }
 }

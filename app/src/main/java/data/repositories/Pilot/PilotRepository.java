@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.util.List;
+
 import data.entities.Pilot;
 
 /**
@@ -22,14 +23,39 @@ public class PilotRepository implements IPilotRepository {
     }
 
     @Override
-    public List<Pilot> QueryForAll() { return repo.queryForAll(); }
+    public List<Pilot> QueryForAll() {
+        return repo.queryForAll();
+    }
 
     @Override
-    public void Save(Pilot entity) { repo.createOrUpdate(entity); }
+    public void Save(Pilot entity) {
+        repo.createOrUpdate(entity);
+    }
 
     @Override
-    public void Delete(Pilot entity) {repo.delete(entity); }
+    public void Delete(Pilot entity) {
+        repo.delete(entity);
+    }
 
     @Override
-    public Pilot Get(int id) { return repo.queryForId( Integer.toString(id));  }
+    public Pilot Get(int id) {
+        return repo.queryForId(Integer.toString(id));
+    }
+
+    @Override
+    public Pilot getPilot() {
+        return QueryForAll().get(0);
+    }
+
+    @Override
+    public boolean isRegistered() {
+        return getPilot().getRegistered();
+    }
+
+    @Override
+    public void saveRegister() {
+        Pilot pilot = getPilot();
+        pilot.setRegistered(true);
+        repo.update(pilot);
+    }
 }

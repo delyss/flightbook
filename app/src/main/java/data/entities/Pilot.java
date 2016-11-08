@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Pilot extends BaseEntity {
     @DatabaseField
-    private String Surname;
+    private String LastName;
 
     @DatabaseField
     private String BloodGroup;
@@ -17,24 +17,64 @@ public class Pilot extends BaseEntity {
     @DatabaseField
     private String Email;
 
+    @DatabaseField
+    private String Password;
+
+    @DatabaseField
+    private Boolean Registered;
+
+    @DatabaseField
+    private String Phone;
 //region getters and setters
 
-    public String getSurname() {
-        return Surname;
+    public String getLastName() {
+        return LastName;
     }
 
-    public void setSurname(String surname) {
-        Surname = surname;
+    public void setLastName(String lastName) {
+        LastName = lastName;
     }
 
-    public String getBloodGroup() { return BloodGroup; }
+    public String getBloodGroup() {
+        return BloodGroup;
+    }
 
     public void setBloodGroup(String bloodGroup) {
         BloodGroup = bloodGroup;
     }
 
-    public String getEmail() { return Email; }
+    public String getEmail() {
+        return Email;
+    }
 
-    public void setEmail(String email) { Email = email; }
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+
+    public boolean getRegistered() {
+        if (Registered == null)
+            return false;
+        return Registered;
+    }
+
+    public void setRegistered(boolean registered) {
+        Registered = registered;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
 //endregion
 }

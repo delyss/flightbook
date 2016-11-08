@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -68,7 +67,7 @@ public class DefinitionProfile extends RoboFragmentActivity {
 
         if(pilot != null){
             txtFirstName.setText(pilot.getName());
-            txtLastName.setText(pilot.getSurname());
+            txtLastName.setText(pilot.getLastName());
             txtEmail.setText(pilot.getEmail());
         }
         alertDialogBuilder.setCancelable(false)
@@ -78,7 +77,7 @@ public class DefinitionProfile extends RoboFragmentActivity {
                             pilot = new Pilot();
                         }
                         pilot.setName(txtFirstName.getText().toString());
-                        pilot.setSurname(txtLastName.getText().toString());
+                        pilot.setLastName(txtLastName.getText().toString());
                         pilot.setEmail(txtEmail.getText().toString());
                         pilotRepository.Save(pilot);
                         setFormInputsFromPilot(pilot);
@@ -108,7 +107,7 @@ public class DefinitionProfile extends RoboFragmentActivity {
     }
 
     private void setFormInputsFromPilot(Pilot pilot) {
-        txtProfileFirstName.setText("name: "+ pilot.getName() + " " + pilot.getSurname());
+        txtProfileFirstName.setText("name: "+ pilot.getName() + " " + pilot.getLastName());
         txtProfileEmail.setText("email: "+ pilot.getEmail());
     }
 }

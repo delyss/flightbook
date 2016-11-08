@@ -17,11 +17,11 @@ import java.util.List;
 /**
  * Created by murat on 14/08/2015. flightbook
  */
-public class DefinitionAdapter extends BaseAdapter {
+class DefinitionAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     private List<Definition> definitionLists;
 
-    public DefinitionAdapter(Activity activity, List<Definition> definitionLists) {
+    DefinitionAdapter(Activity activity, List<Definition> definitionLists) {
         layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.definitionLists = definitionLists;
     }
