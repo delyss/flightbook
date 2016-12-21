@@ -13,6 +13,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.example.murat.akuhavkflightbook.ApiAddFlight;
 import com.example.murat.akuhavkflightbook.BaseEntitySpinAdapter;
 import com.example.murat.akuhavkflightbook.R;
 import com.google.inject.Inject;
@@ -23,11 +27,15 @@ import java.util.List;
 
 import data.entities.BaseEntity;
 import data.entities.Flight;
+import data.entities.Pilot;
 import data.repositories.Flight.FlightRepository;
 import data.repositories.Harness.HarnessRepository;
 import data.repositories.Instructor.InstructorRepository;
+import data.repositories.Pilot.PilotRepository;
 import data.repositories.Takeoff.TakeoffRepository;
 import data.repositories.Wing.WingRepository;
+import org.json.JSONException;
+import org.json.JSONObject;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
@@ -44,6 +52,8 @@ public class EditFlight extends RoboFragmentActivity {
     private TakeoffRepository takeoffRepository;
     @Inject
     private FlightRepository flightRepository;
+    @Inject
+    private PilotRepository pilotRepository;
 
     @InjectView(R.id.spnHarness)
     Spinner spnHarness;
@@ -98,19 +108,19 @@ public class EditFlight extends RoboFragmentActivity {
 
     public void saveFlight(View v) {
 
-        int harnessId = ((BaseEntity) spnHarness.getSelectedItem()).getId();
-        int wingId = ((BaseEntity) spnWing.getSelectedItem()).getId();
-        int takeOffId = ((BaseEntity) spnTakeOff.getSelectedItem()).getId();
-        int insLandId = ((BaseEntity) spnInstructorLanding.getSelectedItem()).getId();
-        int insTakeoffdId = ((BaseEntity) spnInstructorTakeOff.getSelectedItem()).getId();
+        BaseEntity harness = ((BaseEntity) spnHarness.getSelectedItem());
+        BaseEntity wing = ((BaseEntity) spnWing.getSelectedItem());
+        BaseEntity takeOff = ((BaseEntity) spnTakeOff.getSelectedItem());
+        BaseEntity insLand = ((BaseEntity) spnInstructorLanding.getSelectedItem());
+        BaseEntity insTakeoff = ((BaseEntity) spnInstructorTakeOff.getSelectedItem());
 
-        Flight f = new Flight();
+        final Flight f = new Flight();
         f.setFlightDate(flightDate);
-        f.setHarnessId(harnessId);
-        f.setInstructorIdLanding(insLandId);
-        f.setWingId(wingId);
-        f.setTakeoffId(takeOffId);
-        f.setInstructorIdTakeoff(insTakeoffdId);
+        f.setHarnessId(harness.getId());
+        f.setInstructorIdLanding(insLand.getId());
+        f.setWingId(wing.getId());
+        f.setTakeoffId(takeOff.getId());
+        f.setInstructorIdTakeoff(insTakeoff.getId());
         f.setNoteFlight(txtEvalFlight.getText().toString());
         f.setNoteLanding(txtEvalLanding.getText().toString());
         f.setNoteTakeoff(txtEvalTakeoff.getText().toString());
@@ -118,9 +128,35 @@ public class EditFlight extends RoboFragmentActivity {
         f.setScoreLanding(seekbarScorLanding.getProgress());
         f.setScoreTakeoff(seekbarScorTakeoff.getProgress());
 
-        flightRepository.Save(f);
 
-        Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_LONG).show();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) {
+                        flightRepository.Save(f);
+                        Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Pilot pilot = pilotRepository.getPilot();
+        ApiAddFlight call = new ApiAddFlight(pilot.getName() + " " + pilot.getLastName(),
+                wing.getName(), txtEvalFlight.getText().toString(),
+                String.valueOf(seekbarScorFlight.getProgress()),
+                harness.getName(), insLand.getName(), insTakeoff.getName(), txtEvalLanding.getText().toString(),
+                String.valueOf(seekbarScorLanding.getProgress()), txtEvalTakeoff.getText().toString(),
+                String.valueOf(seekbarScorTakeoff.getProgress()), takeOff.getName(), responseListener);
+        RequestQueue queue = Volley.newRequestQueue(EditFlight.this);
+        queue.add(call);
+
     }
 
     private void addSeekBarEvents(SeekBar sb, final TextView lbl) {

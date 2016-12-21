@@ -8,7 +8,6 @@ import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -24,7 +23,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.inject.Inject;
 import data.entities.Pilot;
@@ -355,7 +353,7 @@ public class RegisterActivity extends RoboFragmentActivity implements LoaderCall
                 }
             };
 
-            ApiCall call = new ApiCall(mFirstName, mLastName, mEmail, mPhone, mPassword, responseListener);
+            ApiAddUser call = new ApiAddUser(mFirstName, mLastName, mEmail, mPhone, mPassword, responseListener);
             RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
             queue.add(call);
 
@@ -431,7 +429,7 @@ public class RegisterActivity extends RoboFragmentActivity implements LoaderCall
 //                    }
 //                };
 //
-//                ApiCall call = new ApiCall(firstName, lastName, responseListener);
+//                ApiAddUser call = new ApiAddUser(firstName, lastName, responseListener);
 //                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
 //                queue.add(call);
 //            }

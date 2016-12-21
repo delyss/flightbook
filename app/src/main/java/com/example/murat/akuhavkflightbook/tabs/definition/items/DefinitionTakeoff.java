@@ -25,6 +25,8 @@ import data.repositories.Takeoff.TakeoffRepository;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
+import static com.example.murat.akuhavkflightbook.tabs.definition.items.ItemsHelper.showNotWorkingMessage;
+
 public class DefinitionTakeoff extends RoboFragmentActivity {
 
     @Inject private TakeoffRepository takeoffRepository;
@@ -67,8 +69,9 @@ public class DefinitionTakeoff extends RoboFragmentActivity {
         btnAddTakeoff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                takeoff = new Takeoff();
-                showInputDialog(takeoff);
+                showNotWorkingMessage(getApplicationContext());
+//                takeoff = new Takeoff();
+//                showInputDialog(takeoff);
             }
         });
     }

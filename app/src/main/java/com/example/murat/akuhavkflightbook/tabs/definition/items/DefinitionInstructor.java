@@ -24,6 +24,8 @@ import data.repositories.Instructor.InstructorRepository;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
+import static com.example.murat.akuhavkflightbook.tabs.definition.items.ItemsHelper.showNotWorkingMessage;
+
 public class DefinitionInstructor extends RoboFragmentActivity {
 
     @Inject
@@ -68,8 +70,9 @@ public class DefinitionInstructor extends RoboFragmentActivity {
         btnAddInstructor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                instructor = new Instructor();
-                showInputDialog(instructor);
+                showNotWorkingMessage(getApplicationContext());
+//                instructor = new Instructor()
+//                showInputDialog(instructor);
             }
         });
     }

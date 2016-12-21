@@ -28,6 +28,8 @@ import data.repositories.Wing.WingRepository;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
+import static com.example.murat.akuhavkflightbook.tabs.definition.items.ItemsHelper.showNotWorkingMessage;
+
 public class DefinitionWing extends RoboFragmentActivity {
 
     @Inject
@@ -83,8 +85,9 @@ public class DefinitionWing extends RoboFragmentActivity {
         btnAddWing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wing = new Wing();
-                showInputDialog(wing);
+                showNotWorkingMessage(getApplicationContext());
+//                wing = new Wing();
+//                showInputDialog(wing);
             }
         });
     }

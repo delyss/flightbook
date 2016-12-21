@@ -23,6 +23,8 @@ import data.repositories.Pilot.PilotRepository;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
+import static com.example.murat.akuhavkflightbook.tabs.definition.items.ItemsHelper.showNotWorkingMessage;
+
 public class DefinitionProfile extends RoboFragmentActivity {
 
     @Inject
@@ -50,7 +52,8 @@ public class DefinitionProfile extends RoboFragmentActivity {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showInputDialog();
+                showNotWorkingMessage(getApplicationContext());
+//                showInputDialog();
             }
         });
     }

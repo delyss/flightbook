@@ -11,6 +11,9 @@ public class BaseEntity {
     private Integer Id;
 
     @DatabaseField
+    private Integer CloudId;
+
+    @DatabaseField
     private String Name;
 
     public Integer getId() {
@@ -25,4 +28,11 @@ public class BaseEntity {
         Name = name;
     }
 
+    public Integer getCloudId() {
+        return CloudId;
+    }
+
+    public void setCloudId(Integer cloudId) {
+        CloudId = cloudId;
+    }
 }

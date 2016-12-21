@@ -24,6 +24,8 @@ import data.repositories.Harness.HarnessRepository;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 
+import static com.example.murat.akuhavkflightbook.tabs.definition.items.ItemsHelper.showNotWorkingMessage;
+
 public class DefinitionHarness extends RoboFragmentActivity {
 
     @Inject
@@ -73,8 +75,9 @@ public class DefinitionHarness extends RoboFragmentActivity {
         btnAddHarness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                harness = new Harness();
-                showInputDialog(harness);
+                showNotWorkingMessage(getApplicationContext());
+//                harness = new Harness();
+//                showInputDialog(harness);
             }
         });
     }
