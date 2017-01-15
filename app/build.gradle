@@ -60,4 +60,12 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:4.46'
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.volley:volley:1.0.0'
+    //async http client
+    compile 'com.loopj.android:android-async-http:1.4.9'
+
+    //Job Queue
+    compile 'com.birbit:android-priority-jobqueue:2.0.0'
+
+    //Gcm
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
 }

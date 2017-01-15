@@ -16,6 +16,7 @@ import data.entities.Flight;
 import data.entities.Harness;
 import data.entities.Institution;
 import data.entities.Instructor;
+import data.entities.LastDates;
 import data.entities.Wing;
 import data.entities.Pilot;
 import data.entities.Takeoff;
@@ -26,7 +27,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 27;
+    private static final int DATABASE_VERSION = 29;
 
     @Inject
     public DbHelper(Context context) {
@@ -45,13 +46,14 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Wing.class);
             TableUtils.createTable(connectionSource, Takeoff.class);
             TableUtils.createTable(connectionSource, Flight.class);
+            TableUtils.createTable(connectionSource, LastDates.class);
 
             //for demo users
-            AddDummyInstructors();
-            AddDummyProfile();
-            AddDummyTakeOff();
-            AddDummyHarness();
-            AddInstitutionWings();
+//            AddDummyInstructors();
+//            AddDummyProfile();
+//            AddDummyTakeOff();
+//            AddDummyHarness();
+//            AddInstitutionWings();
 
         } catch (SQLException e) {
             Log.e(DbHelper.class.getName(),
@@ -71,6 +73,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Wing.class, true);
             TableUtils.dropTable(connectionSource, Takeoff.class, true);
             TableUtils.dropTable(connectionSource, Flight.class, true);
+            TableUtils.dropTable(connectionSource, LastDates.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (SQLException e) {
             Log.e(DbHelper.class.getName(),
@@ -179,6 +182,14 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
             e.printStackTrace();
         }
     }
+
+
+    /*
+INSERT INTO `wings`(`id`, `name`, `created_at`, `updated_at`, `Training`, `ClassName`,
+`ClasssValue`, `WeightMin`, `WeightMax`, `IsActive`) VALUES
+(UUID(),'Axis 4 Small',NOW(),NOW(),1,'DHV','1-2',55,85,1)
+    */
+
 
     private void AddInstitutionWings() {
         Wing wing1 = new Wing();

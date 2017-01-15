@@ -1,6 +1,9 @@
 package data.entities;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.types.UuidType;
+
+import java.util.UUID;
 
 /**
  * Created by muratkelekci on 22/10/2016.
@@ -11,7 +14,7 @@ public class BaseEntity {
     private Integer Id;
 
     @DatabaseField
-    private Integer CloudId;
+    private UuidType CloudId;
 
     @DatabaseField
     private String Name;
@@ -28,11 +31,11 @@ public class BaseEntity {
         Name = name;
     }
 
-    public Integer getCloudId() {
+    public UuidType getCloudId() {
         return CloudId;
     }
 
-    public void setCloudId(Integer cloudId) {
+    public void setCloudId(UuidType cloudId) {
         CloudId = cloudId;
     }
 }
