@@ -27,7 +27,7 @@ import data.entities.Takeoff;
  */
 public class DbHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "FlighBook.db";
-    private static final int DATABASE_VERSION = 29;
+    private static final int DATABASE_VERSION = 33;
 
     @Inject
     public DbHelper(Context context) {
@@ -50,7 +50,7 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
             //for demo users
 //            AddDummyInstructors();
-//            AddDummyProfile();
+            AddDummyProfile();
 //            AddDummyTakeOff();
 //            AddDummyHarness();
 //            AddInstitutionWings();
@@ -104,9 +104,9 @@ public class DbHelper extends OrmLiteSqliteOpenHelper {
 
     private void AddDummyProfile() {
         Pilot pilot = new Pilot();
-        pilot.setName("murat");
-        pilot.setLastName("kelekci");
-        pilot.setEmail("mrtklkc@gmail.com");
+        pilot.setName("unknown");
+        pilot.setLastName("unknown");
+        pilot.setEmail("unknown@akuhawk.com");
         try {
             getDao(Pilot.class).create(pilot);
         } catch (SQLException e) {

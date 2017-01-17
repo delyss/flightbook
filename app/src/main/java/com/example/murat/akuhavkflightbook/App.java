@@ -30,7 +30,8 @@ public class App extends Application {
 
     public synchronized JobManager getJobManager() {
         if (jobManager == null) {
-            com.birbit.android.jobqueue.config.Configuration.Builder builder = new com.birbit.android.jobqueue.config.Configuration.Builder(this);
+            com.birbit.android.jobqueue.config.Configuration.Builder builder =
+                    new com.birbit.android.jobqueue.config.Configuration.Builder(this);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 builder.scheduler(FrameworkJobSchedulerService.createSchedulerFor(this, MyJobService.class), true);
             } else {

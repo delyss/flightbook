@@ -21,18 +21,26 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.google.inject.Inject;
+
 import data.entities.Pilot;
 import data.repositories.Pilot.PilotRepository;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import roboguice.activity.RoboFragmentActivity;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -193,8 +201,17 @@ public class RegisterActivity extends RoboFragmentActivity implements LoaderCall
             final EditText txtPhone = (EditText) findViewById(R.id.txt_edit_reg_phone);
             final EditText txtPassword = (EditText) findViewById(R.id.txt_edit_reg_password);
 
+            try {
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                md.update(txtPassword.getText().toString().getBytes("UTF-8")); // Change this to "UTF-16" if needed
+                byte[] digest = md.digest();
+               password = String.format("%064x", new java.math.BigInteger(1, digest));
+            } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+
             mAuthTask = new UserLoginTask(txtFirstName.getText().toString(), txtLastName.getText().toString(),
-                    txtEmail.getText().toString(), txtPhone.getText().toString(), txtPassword.getText().toString());
+                    txtEmail.getText().toString(), txtPhone.getText().toString(), password);
             mAuthTask.execute((Void) null);
         }
     }
@@ -330,6 +347,7 @@ public class RegisterActivity extends RoboFragmentActivity implements LoaderCall
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         boolean success = jsonObject.getBoolean("success");
+                        String userId = jsonObject.getString("userId");
                         if (success) {
                             String email = jsonObject.getString("email");
                             String password = jsonObject.getString("password");
@@ -344,6 +362,7 @@ public class RegisterActivity extends RoboFragmentActivity implements LoaderCall
                             pilot.setLastName(lastName);
                             pilot.setPhone(phone);
                             pilot.setRegistered(true);
+                            pilot.setCloudId(UUID.fromString(userId));
                             pilotRepository.Save(pilot);
                         }
 
@@ -352,6 +371,8 @@ public class RegisterActivity extends RoboFragmentActivity implements LoaderCall
                     }
                 }
             };
+
+
 
             ApiAddUser call = new ApiAddUser(mFirstName, mLastName, mEmail, mPhone, mPassword, responseListener);
             RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
