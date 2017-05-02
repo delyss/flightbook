@@ -1,4 +1,4 @@
-package com.example.murat.akuhavkflightbook.remote;
+package com.example.murat.akuhavkflightbook.remote.AddFlight;
 
 import android.support.annotation.Nullable;
 
@@ -18,15 +18,13 @@ import data.entities.Flight;
 
 public class PostDataJob extends Job {
 
-    public static final int PRIORITY = 1;
-    public static final String POST_TO_SERVER_GROUP_ID = "Post To Server";
-    private final String senderName;
+    private static final int PRIORITY = 1;
+    private static final String POST_TO_SERVER_GROUP_ID = "Post To Server";
     private HashMap<String, String> postData;
 
-    public PostDataJob(HashMap<String, String> postData, String senderName) {
+    public PostDataJob(HashMap<String, String> postData) {
         super(new Params(PRIORITY).requireNetwork().persist().groupBy(POST_TO_SERVER_GROUP_ID));
         this.postData = postData;
-        this.senderName = senderName;
     }
 
     @Override
@@ -37,7 +35,6 @@ public class PostDataJob extends Job {
     public void onRun() throws Throwable {
 
         Flight flight = new Flight();
-
         flight.setHarnessId(Integer.parseInt(postData.get("harnessId")));
         flight.setInstructorIdLanding(Integer.parseInt(postData.get("instructorIdLanding")));
         flight.setWingId(Integer.parseInt(postData.get("wingId")));

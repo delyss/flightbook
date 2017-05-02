@@ -1,4 +1,4 @@
-package com.example.murat.akuhavkflightbook.remote;
+package com.example.murat.akuhavkflightbook.remote.AddFlight;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
@@ -10,11 +10,11 @@ import java.util.Map;
  * Created by muratkelekci on 07/11/2016.
  */
 
-public class ApiAddFlight extends StringRequest {
+class ApiAddFlight extends StringRequest {
     private static final String API_URL = "http://tty.tc/e2a53f56-32ba-49ee-947e-53f9f16bf2fe/api/addflight.php";
     private Map<String, String> params;
 
-    public ApiAddFlight(String pilotName, String wingStr,  String flightEval, String flightScore, String harnessStr,
+    ApiAddFlight(String pilotName, String wingStr, String flightEval, String flightScore, String harnessStr,
                  String insLandingStr, String insTakeoffStr, String landingEval, String landingScore, String takeoffEval,
                  String takeoffScore, String takeoffStr, Response.Listener<String> listener) {
         super(Method.POST, API_URL, listener, null);

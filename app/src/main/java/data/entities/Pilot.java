@@ -25,6 +25,12 @@ public class Pilot extends BaseEntity {
 
     @DatabaseField
     private String Phone;
+
+    @DatabaseField
+    private String FcmId;
+
+    @DatabaseField
+    private String BirthDay;
 //region getters and setters
 
     public String getLastName() {
@@ -75,6 +81,22 @@ public class Pilot extends BaseEntity {
 
     public void setPhone(String phone) {
         Phone = phone;
+    }
+
+    public String getFcmId() {
+        return FcmId;
+    }
+
+    public void setFcmId(String fcmId) {
+        FcmId = fcmId;
+    }
+
+    public String getBirthDay() {
+        return BirthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        BirthDay = birthDay;
     }
 //endregion
 }

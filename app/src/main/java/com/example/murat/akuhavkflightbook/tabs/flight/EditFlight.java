@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.murat.akuhavkflightbook.App;
 import com.example.murat.akuhavkflightbook.BaseEntitySpinAdapter;
-import com.example.murat.akuhavkflightbook.remote.PostDataJob;
+import com.example.murat.akuhavkflightbook.remote.AddFlight.PostDataJob;
 import com.example.murat.akuhavkflightbook.R;
 import com.google.inject.Inject;
 
@@ -133,7 +133,7 @@ public class EditFlight extends RoboFragmentActivity {
 
         ((App) getApplication().getApplicationContext())
                 .getJobManager()
-                .addJobInBackground(new PostDataJob(flightParams, "addFlight"));
+                .addJobInBackground(new PostDataJob(flightParams));
     }
 
     private void addSeekBarEvents(SeekBar sb, final TextView lbl) {
